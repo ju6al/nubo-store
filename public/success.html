@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Received — Nubo Automations</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#000011;--surface:#00001e;--blue:#1144ff;--blue-l:#4488ff;--text:#f0f4ff;--muted:rgba(240,244,255,0.45);--border:rgba(68,136,255,0.12);}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,30,180,.4) 0%,transparent 60%);pointer-events:none;}
+.card{position:relative;z-index:1;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:3.5rem 3rem;max-width:520px;width:100%;text-align:center;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--blue-l),transparent);border-radius:20px 20px 0 0;}
+.icon{width:72px;height:72px;border-radius:50%;background:rgba(17,68,255,.12);border:1px solid rgba(68,136,255,.25);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 1.5rem;}
+h1{font-size:1.75rem;font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:.5rem;}
+.sub{font-size:.95rem;color:var(--muted);margin-bottom:2rem;line-height:1.7;}
+.info-box{background:rgba(17,68,255,.06);border:1px solid rgba(68,136,255,.15);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;}
+.info-box p{font-size:.85rem;color:var(--muted);line-height:1.7;}
+.info-box strong{color:var(--blue-l);}
+.status{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#4ade80;background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);padding:.4rem 1rem;border-radius:100px;margin-bottom:2rem;}
+.dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:p 2s infinite;}
+@keyframes p{0%,100%{opacity:1;}50%{opacity:.3;}}
+.btn{display:inline-block;padding:.85rem 2rem;background:var(--blue);color:#fff;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:700;border-radius:8px;text-decoration:none;transition:all .2s;}
+.btn:hover{background:#2255ff;}
+.order-id{font-size:.75rem;color:var(--muted);margin-top:1.5rem;font-family:monospace;}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="icon">✓</div>
+  <div class="status"><span class="dot"></span> Payment Received</div>
+  <h1>You're all set.</h1>
+  <p class="sub">Your payment was received. Check your inbox — your download link is on the way. Usually arrives within 60 seconds of blockchain confirmation.</p>
+  <div class="info-box">
+    <p>📧 <strong>Check your email</strong> — the download link will arrive automatically once the transaction confirms on-chain.</p><br>
+    <p>⏱ <strong>Confirmation time</strong> varies by coin — BTC ~10 min, ETH ~1 min, SOL ~seconds.</p><br>
+    <p>❓ <strong>Didn't get it?</strong> Email <strong>support@nuboauto.com</strong> with your order ID below.</p>
+  </div>
+  <a href="/" class="btn">← Back to Store</a>
+  <p class="order-id" id="oid"></p>
+</div>
+<script>
+  const oid = new URLSearchParams(window.location.search).get('order');
+  if (oid) document.getElementById('oid').textContent = 'Order ID: ' + oid;
+</script>
+</body>
+</html>

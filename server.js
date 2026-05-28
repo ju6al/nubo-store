@@ -20,7 +20,7 @@ const PRODUCTS = [
     price: 79,
     currency: 'USD',
     features: ['Scrape emails from any website','Bulk export to CSV or Excel','Built-in duplicate remover','1 year of updates','Priority support','Instant download delivery'],
-    downloadLink: 'https://your-cdn.com/nubo-email-scrapper.zip',
+    downloadLink: 'https://www.dropbox.com/scl/fi/fsu4042n6p2k71ckhcipv/NUBO-EMAIL-BOT.html?rlkey=qlkvozq2royfoeb6jiwhlqd8x&st=0wcafi23&dl=1',
     badge: 'POPULAR',
   }
 ];

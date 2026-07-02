@@ -14,15 +14,33 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const PRODUCTS = [
   {
-    id: 'nubo-email-scrapper',
-    name: 'NUBO EMAIL SCRAPPER',
-    tagline: 'Extract emails from anywhere, instantly',
-    price: 79,
+    id: 'NUBO_LEADS',
+    name: 'NUBO Lead Scraper',
+    tagline: 'AI powered email scraper for any niche and city',
+    price: 49,
     currency: 'USD',
-    features: ['Scrape emails from any website','Bulk export to CSV or Excel','Built-in duplicate remover','1 year of updates','Priority support','Instant download delivery'],
-    downloadLink: 'https://www.dropbox.com/scl/fi/fsu4042n6p2k71ckhcipv/NUBO-EMAIL-BOT.html?rlkey=qlkvozq2royfoeb6jiwhlqd8x&st=0wcafi23&dl=1',
-    badge: 'POPULAR',
-  }
+    features: ['Find local business emails by niche','Groq AI integration (free API key)','Export leads to CSV instantly','Multi source search engine','Built in duplicate remover','Single HTML file, no install needed','Instant download delivery'],
+    downloadLink: `${process.env.BASE_URL || ''}/downloads/nubo-lead-scraper-3c61e225be904b0ab25a2d90.html`,
+  },
+  {
+    id: 'NUBO_DASHBOARD',
+    name: 'NUBO Dashboard',
+    tagline: 'Complete AI business OS for local service businesses',
+    price: 97,
+    currency: 'USD',
+    features: ['CRM pipeline and lead management','Full Lead Scraper module included','Full Invoice generator included','Finance tracker with revenue charts','Task manager and content calendar','AI business advisor (Groq / Llama)','PIN locked security and autolock','Single HTML file that runs anywhere','Instant download delivery'],
+    downloadLink: `${process.env.BASE_URL || ''}/downloads/nubo-dashboard-aea4d53d170be270b88673c8.html`,
+    badge: 'BEST VALUE',
+  },
+  {
+    id: 'NUBO_INVOICE',
+    name: 'NUBO Invoice',
+    tagline: 'Professional AI invoice generator, print ready PDFs',
+    price: 29,
+    currency: 'USD',
+    features: ['Generate professional invoices instantly','AI enhanced invoice notes (Groq)','Print ready PDF export','Custom line items and tax settings','Your brand, your logo','Single HTML file that works offline','Instant download delivery'],
+    downloadLink: `${process.env.BASE_URL || ''}/downloads/nubo-invoice-37eec0a45144bad8032c8d05.html`,
+  },
 ];
 
 const orders = {};
@@ -50,7 +68,7 @@ async function sendDeliveryEmail(toEmail, product, licenseKey, orderId) {
   const html = `<!DOCTYPE html><html><body style="background:#000011;font-family:Inter,Arial,sans-serif;margin:0;padding:0;">
   <div style="max-width:600px;margin:40px auto;background:#00001e;border:1px solid rgba(68,136,255,0.2);border-radius:12px;overflow:hidden;">
     <div style="background:linear-gradient(135deg,#000033,#001166);padding:40px;">
-      <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0;">nubo<span style="color:#4d88ff;">.</span>ai</h1>
+      <h1 style="color:#fff;font-size:24px;font-weight:800;margin:0;">Nubostore</h1>
       <p style="color:rgba(255,255,255,0.5);font-size:12px;margin:6px 0 0;text-transform:uppercase;letter-spacing:1px;">Order Confirmed</p>
     </div>
     <div style="padding:40px;">
@@ -70,12 +88,12 @@ async function sendDeliveryEmail(toEmail, product, licenseKey, orderId) {
         <p style="color:rgba(255,255,255,0.4);font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0 0 12px;">Download</p>
         <a href="${product.downloadLink}" style="display:inline-block;background:#1144ff;color:#fff;text-decoration:none;padding:12px 24px;border-radius:6px;font-weight:700;font-size:14px;">Download Now</a>
       </div>
-      <p style="color:rgba(255,255,255,0.25);font-size:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">Order ID: ${orderId} · support@nuboai.com</p>
+      <p style="color:rgba(255,255,255,0.25);font-size:12px;border-top:1px solid rgba(255,255,255,0.05);padding-top:16px;">Order ID: ${orderId} | support: nuboautomations@gmail.com</p>
     </div>
   </div></body></html>`;
 
   await transporter.sendMail({
-    from: `"Nubo AI" <${process.env.SMTP_USER}>`,
+    from: `"Nubostore" <${process.env.SMTP_USER}>`,
     to: toEmail,
     subject: `Your ${product.name} download is ready`,
     html,

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nubo — AI Invoice Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f8f9fa;--bg2:#ffffff;--bg3:#f1f3f5;
+  --border:#e9ecef;--border2:#dee2e6;
+  --text:#1a1a2e;--text2:#495057;--text3:#adb5bd;
+  --blue:#2855d8;--blue-bg:rgba(40,85,216,0.09);--blue-text:#1e46c7;
+  --green:#16a34a;--green-bg:#f0fdf4;--green-text:#15803d;
+  --red:#dc2626;--red-bg:#fef2f2;--red-text:#b91c1c;
+  --amber:#d97706;--amber-bg:#fffbeb;--amber-text:#b45309;
+  --radius:10px;--radius-sm:6px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06);
+}
+body.dark{
+  --bg:#000000;--bg2:#16181c;--bg3:#1e2124;
+  --border:#2f3336;--border2:#3a3d42;
+  --text:#e7e9ea;--text2:#8b98a5;--text3:#536471;
+  --blue:#2855d8;--blue-bg:rgba(59,110,232,0.12);--blue-text:#3b6ee8;
+  --green:#00ba7c;--green-bg:rgba(0,186,124,0.1);--green-text:#00ba7c;
+  --red:#f4212e;--red-bg:rgba(244,33,46,0.1);--red-text:#f4212e;
+  --amber:#ffd400;--amber-bg:rgba(255,212,0,0.1);--amber-text:#ffd400;
+}
+body.dark .card{background:#16181c;border-color:#2f3336;box-shadow:none}
+body.dark input,body.dark select,body.dark textarea{background:transparent;border-color:#2f3336;color:#e7e9ea}
+body.dark input::placeholder,body.dark textarea::placeholder{color:#536471}
+body.dark input:focus,body.dark select:focus,body.dark textarea:focus{border-color:#3b6ee8;background:transparent}
+body.dark label{color:#71767b}
+body.dark .btn{background:transparent;border-color:#2f3336;color:#e7e9ea}
+body.dark .btn:hover{background:rgba(231,233,234,0.08)}
+body.dark .btn-primary{background:#3b6ee8;border-color:#3b6ee8;color:#fff;font-weight:600}
+body.dark .btn-primary:hover{background:#1a56c4}
+body.dark .topbar{background:rgba(0,0,0,0.9);border-color:#2f3336}
+body.dark .inv-saved-row{border-color:#2f3336}
+body.dark .key-card{background:#1e2124;border-color:#2f3336}
+body.dark .tag{border-color:#2f3336}
+body.dark .tag.tw{color:#8b98a5}
+body.dark .tag.tgr{color:#00ba7c}
+body.dark .tag.tg{color:#f4212e}
+
+body{font-family:'Inter',sans-serif;font-size:13px;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── TOPBAR ── */
+.topbar{height:52px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+.topbar-logo{font-size:15px;font-weight:600;letter-spacing:-0.02em}
+.topbar-badge{font-size:10px;background:var(--blue-bg);color:var(--blue-text);padding:2px 8px;border-radius:20px;font-weight:500}
+.topbar-right{margin-left:auto;display:flex;gap:8px;align-items:center}
+
+/* ── LAYOUT ── */
+.page{max-width:1100px;margin:0 auto;padding:20px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.g2{grid-template-columns:1fr}}
+
+/* ── CARDS ── */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card-title{font-size:11px;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.card-title i{font-size:14px}
+
+/* ── BUTTONS ── */
+.btn{border:1px solid var(--border2);background:var(--bg2);color:var(--text);border-radius:var(--radius-sm);padding:7px 14px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .12s;font-family:'Inter',sans-serif;font-weight:500}
+.btn:hover{background:var(--bg3)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-primary:hover:not(:disabled){background:#1e46c7;border-color:#1e46c7}
+.btn-sm{padding:5px 10px;font-size:11px}
+
+/* ── FORM ── */
+input,select,textarea{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:8px 10px;color:var(--text);font-size:12px;font-family:'Inter',sans-serif;outline:none;width:100%;transition:border .12s}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:var(--bg2)}
+label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;font-weight:500}
+.form-row{margin-bottom:10px}
+
+/* ── TAGS ── */
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;border:1px solid var(--border2);cursor:pointer;transition:all .12s}
+.tag.tw{color:var(--amber-text);background:var(--amber-bg);border-color:transparent}
+.tag.tgr{color:var(--green-text);background:var(--green-bg);border-color:transparent}
+.tag.tg{color:var(--red-text);background:var(--red-bg);border-color:transparent}
+
+/* ── KEY CARD ── */
+.key-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;margin-bottom:10px}
+.key-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.key-row input{flex:1;min-width:200px;margin:0}
+.key-status{font-size:11px;font-weight:500;margin-top:8px}
+
+/* ── INVOICE DOC ── */
+.inv-doc{background:#fff;color:#111;border-radius:8px;padding:32px;font-size:12px;line-height:1.6;font-family:'Inter',sans-serif}
+.inv-doc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:20px;border-bottom:2px solid #111}
+.inv-doc-title{font-size:28px;font-weight:700;letter-spacing:-0.03em;color:#111}
+.inv-doc-num{font-size:11px;color:#666;margin-top:4px}
+.inv-doc-biz{text-align:right;font-size:12px;color:#444;line-height:1.7}
+.inv-doc-biz strong{color:#111;font-size:13px;display:block;margin-bottom:2px}
+.inv-bill-section{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+.inv-bill-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:6px;font-weight:600}
+.inv-bill-name{font-size:13px;font-weight:600;color:#111;margin-bottom:2px}
+.inv-bill-detail{font-size:11px;color:#555;line-height:1.6}
+.inv-dates{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
+.inv-date-box{background:#f8f9fa;border-radius:6px;padding:10px 14px}
+.inv-date-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:3px;font-weight:600}
+.inv-date-val{font-size:12px;font-weight:600;color:#111}
+.inv-items-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.inv-items-table th{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#999;padding:8px 10px;text-align:left;border-bottom:1px solid #e5e7eb;font-weight:600}
+.inv-items-table th:last-child,.inv-items-table td:last-child{text-align:right}
+.inv-items-table td{padding:10px;border-bottom:1px solid #f3f4f6;font-size:12px;color:#333}
+.inv-items-table tr:last-child td{border:none}
+.inv-totals{display:flex;flex-direction:column;align-items:flex-end;gap:6px;margin-bottom:24px}
+.inv-total-row{display:flex;gap:48px;font-size:12px}
+.inv-total-row.grand{font-size:15px;font-weight:700;color:#111;border-top:2px solid #111;padding-top:8px;margin-top:4px}
+.inv-total-label{color:#666;min-width:80px;text-align:right}
+.inv-total-val{min-width:80px;text-align:right;font-weight:500;color:#111}
+.inv-notes-box{background:#f8f9fa;border-radius:6px;padding:14px;font-size:11px;color:#555;line-height:1.7}
+.inv-notes-label{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:#999;margin-bottom:6px;font-weight:600}
+.inv-footer{margin-top:24px;padding-top:16px;border-top:1px solid #e5e7eb;text-align:center;font-size:10px;color:#999}
+.inv-item-row{display:grid;grid-template-columns:1fr 70px 90px 36px;gap:6px;margin-bottom:6px;align-items:center}
+.inv-item-row input{margin:0;font-size:11px;padding:6px 8px}
+.inv-del{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:16px;padding:0;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:4px;transition:all .12s}
+.inv-del:hover{color:var(--red-text);background:var(--red-bg)}
+.inv-saved-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}
+.inv-saved-row:last-child{border:none}
+
+/* ── PRINT ── */
+@media print{body *{visibility:hidden}#inv_printArea,#inv_printArea *{visibility:visible}#inv_printArea{position:fixed;left:0;top:0;width:100%;padding:24px}}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:8px;font-size:12px;font-weight:500;z-index:999;opacity:0;transition:opacity .2s;pointer-events:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-logo">Nubo</div>
+  <span class="topbar-badge">AI Invoice Generator</span>
+  <div class="topbar-right">
+    <button class="btn btn-sm" onclick="toggleDark()" id="darkBtn"><i class="ti ti-moon"></i></button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- API KEY (optional — enhances notes) -->
+  <div class="card">
+    <div class="card-title"><i class="ti ti-sparkles"></i>Groq AI key <span style="font-size:10px;background:var(--blue-bg);color:var(--blue-text);padding:1px 8px;border-radius:10px;margin-left:4px">optional — enhances invoice notes</span></div>
+    <div class="key-card">
+      <div class="key-row">
+        <input id="groqKeyIn" type="password" placeholder="gsk_... (optional — get free at console.groq.com/keys)"/>
+        <button class="btn btn-primary btn-sm" onclick="saveGroqKey()"><i class="ti ti-check"></i> Save</button>
+      </div>
+      <div id="groqStatus" class="key-status" style="color:var(--text3)">Not connected — invoices still work, AI note enhancement disabled</div>
+    </div>
+  </div>
+
+  <!-- FORM + PREVIEW -->
+  <div class="g2">
+    <div style="display:flex;flex-direction:column;gap:12px">
+
+      <!-- Your business -->
+      <div class="card">
+        <div class="card-title"><i class="ti ti-building"></i>Your business</div>
+        <div class="form-row"><label>Business name</label><input id="inv_bizName" type="text" placeholder="Nubo Automations"/></div>
+        <div class="form-row"><label>Your email</label><input id="inv_bizEmail" type="email" placeholder="hello@nubo.com"/></div>
+        <div class="form-row"><label>Your phone</label><input id="inv_bizPhone" type="text" placeholder="+971 50 000 0000"/></div>
+        <div class="form-row"><label>Address (optional)</label><input id="inv_bizAddr" type="text" placeholder="Dubai, UAE"/></div>
+      </div>
+
+      <!-- Bill to -->
+      <div class="card">
+        <div class="card-title"><i class="ti ti-user"></i>Bill to</div>
+        <div class="form-row"><label>Client name / company</label><input id="inv_clientName" type="text" placeholder="Dubai Bloom Salon"/></div>
+        <div class="form-row"><label>Client email</label><input id="inv_clientEmail" type="email" placeholder="owner@dubaibloom.com"/></div>
+        <div class="form-row"><label>Client address (optional)</label><input id="inv_clientAddr" type="text" placeholder="Jumeirah, Dubai"/></div>
+      </div>
+
+      <!-- Invoice details -->
+      <div class="card">
+        <div class="card-title"><i class="ti ti-settings"></i>Invoice details</div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1" class="form-row"><label>Invoice #</label><input id="inv_num" type="text" placeholder="INV-001"/></div>
+          <div style="flex:1" class="form-row"><label>Date</label><input id="inv_date" type="date"/></div>
+          <div style="flex:1" class="form-row"><label>Due date</label><input id="inv_due" type="date"/></div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <div style="flex:1" class="form-row"><label>Currency</label>
+            <select id="inv_currency">
+              <option value="$">USD ($)</option>
+              <option value="AED">AED (د.إ)</option>
+              <option value="€">EUR (€)</option>
+              <option value="£">GBP (£)</option>
+              <option value="₹">INR (₹)</option>
+              <option value="CA$">CAD (CA$)</option>
+              <option value="A$">AUD (A$)</option>
+              <option value="S$">SGD (S$)</option>
+              <option value="¥">JPY (¥)</option>
+              <option value="R">ZAR (R)</option>
+            </select>
+          </div>
+          <div style="flex:1" class="form-row"><label>Tax %</label><input id="inv_tax" type="number" placeholder="5" value="0"/></div>
+        </div>
+        <div class="form-row"><label>Notes (AI will enhance this if key connected)</label><textarea id="inv_notes" rows="2" placeholder="e.g. Payment via bank transfer. Thank you for your business!"></textarea></div>
+      </div>
+
+      <!-- Line items -->
+      <div class="card">
+        <div class="card-title"><i class="ti ti-list"></i>Line items</div>
+        <div id="inv_items"></div>
+        <button class="btn btn-sm" onclick="addInvItem()" style="width:100%;margin-top:8px"><i class="ti ti-plus"></i> Add item</button>
+      </div>
+
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-primary" onclick="generateInvoice()" style="flex:1;padding:11px"><i class="ti ti-sparkles"></i> Generate Invoice</button>
+        <button class="btn btn-sm" onclick="printInvoice()" id="inv_printBtn" disabled style="padding:11px 16px"><i class="ti ti-printer"></i> Print / PDF</button>
+      </div>
+    </div>
+
+    <!-- Preview -->
+    <div class="card" style="min-height:500px">
+      <div class="card-title"><i class="ti ti-eye"></i>Invoice preview</div>
+      <div id="inv_preview" style="font-size:12px;color:var(--text3);padding:40px 0;text-align:center">
+        <i class="ti ti-receipt" style="font-size:32px;display:block;margin-bottom:12px;opacity:.3"></i>
+        Fill in the form and click Generate — your professional invoice will appear here.
+      </div>
+    </div>
+  </div>
+
+  <!-- Saved invoices -->
+  <div class="card" style="margin-top:0">
+    <div class="card-title"><i class="ti ti-history"></i>Saved invoices — <span id="inv_savedCount">0</span></div>
+    <div id="inv_savedList">
+      <div style="font-size:12px;color:var(--text3)">No invoices generated yet.</div>
+    </div>
+  </div>
+
+</div>
+<div id="toast"></div>
+
+<script>
+// ── Security: obfuscate API key in localStorage ───────────────────────────
+function obfuscate(str){
+  if(!str)return'';
+  const key='nubo2025';
+  return btoa(str.split('').map((c,i)=>String.fromCharCode(c.charCodeAt(0)^key.charCodeAt(i%key.length))).join(''));
+}
+function deobfuscate(str){
+  if(!str)return'';
+  try{
+    const key='nubo2025';
+    return atob(str).split('').map((c,i)=>String.fromCharCode(c.charCodeAt(0)^key.charCodeAt(i%key.length))).join('');
+  }catch{return'';}
+}
+function secureGet(k){return deobfuscate(localStorage.getItem(k)||'');}
+function secureSet(k,v){localStorage.setItem(k,obfuscate(v));}
+
+// ── Dark mode ─────────────────────────────────────────────────────────────
+let isDark=localStorage.getItem('inv_dark')==='1';
+function applyDark(){
+  document.body.classList.toggle('dark',isDark);
+  document.getElementById('darkBtn').innerHTML=isDark?'<i class="ti ti-sun"></i>':'<i class="ti ti-moon"></i>';
+}
+function toggleDark(){isDark=!isDark;localStorage.setItem('inv_dark',isDark?'1':'0');applyDark();}
+applyDark();
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.style.opacity='1';
+  setTimeout(()=>t.style.opacity='0',2500);
+}
+
+// ── Groq key ──────────────────────────────────────────────────────────────
+let groqKey=secureGet('inv_groq')||'';
+function saveGroqKey(){
+  const k=document.getElementById('groqKeyIn').value.trim();
+  if(!k){showToast('Enter a Groq API key');return;}
+  groqKey=k;secureSet('inv_groq',k);
+  setGroqStatus(true);showToast('Groq AI connected ✓');
+}
+function setGroqStatus(on){
+  const el=document.getElementById('groqStatus');if(!el)return;
+  el.textContent=on?'✓ Connected — AI will enhance your invoice notes':'Not connected — invoices still work, AI note enhancement disabled';
+  el.style.color=on?'var(--green-text)':'var(--text3)';
+}
+
+// ── Persist business info ─────────────────────────────────────────────────
+function saveBusinessInfo(){
+  const biz={name:iv('inv_bizName'),email:iv('inv_bizEmail'),phone:iv('inv_bizPhone'),addr:iv('inv_bizAddr')};
+  localStorage.setItem('inv_biz',JSON.stringify(biz));
+}
+['inv_bizName','inv_bizEmail','inv_bizPhone','inv_bizAddr'].forEach(id=>{
+  document.addEventListener('DOMContentLoaded',()=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('input',saveBusinessInfo);
+  });
+});
+
+// ── INVOICE GENERATOR ─────────────────────────────────────────────────────
+let invItems=[{desc:'',qty:1,price:''}];
+let savedInvoices=JSON.parse(localStorage.getItem('nubo_invoices')||'[]');
+
+function iv(id){const el=document.getElementById(id);return el?el.value.trim():'';}
+
+function addInvItem(){invItems.push({desc:'',qty:1,price:''});renderInvItems();}
+function removeInvItem(i){if(invItems.length===1)return;invItems.splice(i,1);renderInvItems();}
+
+function renderInvItems(){
+  const el=document.getElementById('inv_items');if(!el)return;
+  el.innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 70px 90px 36px;gap:6px;margin-bottom:4px">
+      <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px">Description</div>
+      <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px">Qty</div>
+      <div style="font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;padding:0 8px">Price</div>
+      <div></div>
+    </div>`+
+  invItems.map((it,i)=>`
+    <div class="inv-item-row">
+      <input type="text" placeholder="e.g. Website design" value="${it.desc}" oninput="invItems[${i}].desc=this.value"/>
+      <input type="number" placeholder="1" value="${it.qty}" min="1" oninput="invItems[${i}].qty=this.value"/>
+      <input type="number" placeholder="0.00" value="${it.price}" min="0" step="0.01" oninput="invItems[${i}].price=this.value"/>
+      <button class="inv-del" onclick="removeInvItem(${i})" title="Remove">×</button>
+    </div>`).join('');
+}
+
+function calcInvTotals(currency,taxPct){
+  const subtotal=invItems.reduce((s,it)=>s+(parseFloat(it.price)||0)*(parseFloat(it.qty)||1),0);
+  const tax=subtotal*(taxPct/100);
+  const total=subtotal+tax;
+  const fmt=v=>currency+(v.toFixed(2));
+  return{subtotal,tax,total,fmt,taxPct};
+}
+
+async function generateInvoice(){
+  const bizName=iv('inv_bizName')||'Your Business';
+  const bizEmail=iv('inv_bizEmail');
+  const bizPhone=iv('inv_bizPhone');
+  const bizAddr=iv('inv_bizAddr');
+  const clientName=iv('inv_clientName')||'Client';
+  const clientEmail=iv('inv_clientEmail');
+  const clientAddr=iv('inv_clientAddr');
+  const invNum=iv('inv_num')||'INV-'+String(savedInvoices.length+1).padStart(3,'0');
+  const invDate=iv('inv_date')||new Date().toISOString().split('T')[0];
+  const invDue=iv('inv_due')||(()=>{const d=new Date();d.setDate(d.getDate()+14);return d.toISOString().split('T')[0];})();
+  const currency=iv('inv_currency')||'$';
+  const taxPct=parseFloat(iv('inv_tax'))||0;
+  const notesRaw=iv('inv_notes');
+
+  const preview=document.getElementById('inv_preview');
+  preview.innerHTML='<div style="text-align:center;padding:40px;color:var(--text3);font-size:12px"><i class="ti ti-loader" style="font-size:24px;display:block;margin-bottom:10px"></i>Generating your invoice...</div>';
+
+  let notes=notesRaw||'Thank you for your business. Please process payment by the due date.';
+  const gKey=groqKey||secureGet('inv_groq')||'';
+  if(gKey&&notesRaw){
+    try{
+      const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+gKey},body:JSON.stringify({model:'llama-3.3-70b-versatile',messages:[{role:'system',content:'You write professional invoice notes. Keep it short, 1-2 sentences, polished and friendly.'},{role:'user',content:`Enhance this invoice note for a client named "${clientName}": "${notesRaw}"`}],max_tokens:80,temperature:0.6})});
+      const d=await r.json();
+      const aiNote=d?.choices?.[0]?.message?.content?.trim();
+      if(aiNote)notes=aiNote;
+    }catch(e){}
+  }
+
+  const{subtotal,tax,total,fmt}=calcInvTotals(currency,taxPct);
+
+  const html=`
+  <div id="inv_printArea">
+  <div class="inv-doc">
+    <div class="inv-doc-header">
+      <div>
+        <div class="inv-doc-title">INVOICE</div>
+        <div class="inv-doc-num"># ${invNum}</div>
+      </div>
+      <div class="inv-doc-biz">
+        <strong>${bizName}</strong>
+        ${bizEmail?`<div>${bizEmail}</div>`:''}
+        ${bizPhone?`<div>${bizPhone}</div>`:''}
+        ${bizAddr?`<div>${bizAddr}</div>`:''}
+      </div>
+    </div>
+    <div class="inv-bill-section">
+      <div>
+        <div class="inv-bill-label">Bill to</div>
+        <div class="inv-bill-name">${clientName}</div>
+        <div class="inv-bill-detail">
+          ${clientEmail?`<div>${clientEmail}</div>`:''}
+          ${clientAddr?`<div>${clientAddr}</div>`:''}
+        </div>
+      </div>
+      <div>
+        <div class="inv-dates">
+          <div class="inv-date-box"><div class="inv-date-label">Invoice date</div><div class="inv-date-val">${formatDate(invDate)}</div></div>
+          <div class="inv-date-box"><div class="inv-date-label">Due date</div><div class="inv-date-val">${formatDate(invDue)}</div></div>
+        </div>
+      </div>
+    </div>
+    <table class="inv-items-table">
+      <thead><tr><th>Description</th><th style="text-align:right">Qty</th><th style="text-align:right">Unit price</th><th style="text-align:right">Total</th></tr></thead>
+      <tbody>
+        ${invItems.filter(it=>it.desc||it.price).map(it=>{
+          const qty=parseFloat(it.qty)||1;
+          const price=parseFloat(it.price)||0;
+          return `<tr><td>${it.desc||'—'}</td><td style="text-align:right">${qty}</td><td style="text-align:right">${fmt(price)}</td><td style="text-align:right">${fmt(qty*price)}</td></tr>`;
+        }).join('')}
+      </tbody>
+    </table>
+    <div class="inv-totals">
+      <div class="inv-total-row"><span class="inv-total-label">Subtotal</span><span class="inv-total-val">${fmt(subtotal)}</span></div>
+      ${taxPct>0?`<div class="inv-total-row"><span class="inv-total-label">Tax (${taxPct}%)</span><span class="inv-total-val">${fmt(tax)}</span></div>`:''}
+      <div class="inv-total-row grand"><span class="inv-total-label" style="color:#111;font-weight:700">Total</span><span class="inv-total-val" style="color:#111">${fmt(total)}</span></div>
+    </div>
+    <div class="inv-notes-box">
+      <div class="inv-notes-label">Notes</div>
+      ${notes}
+    </div>
+    <div class="inv-footer">Generated by Nubo · ${bizName}</div>
+  </div>
+  </div>`;
+
+  preview.innerHTML=html;
+  document.getElementById('inv_printBtn').disabled=false;
+
+  const entry={id:invNum,client:clientName,amount:fmt(total),date:invDate,status:'unpaid'};
+  savedInvoices.unshift(entry);
+  if(savedInvoices.length>20)savedInvoices.pop();
+  localStorage.setItem('nubo_invoices',JSON.stringify(savedInvoices));
+  renderSavedInvoices();
+  showToast('Invoice generated ✓');
+}
+
+function formatDate(d){
+  if(!d)return'—';
+  try{return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return d;}
+}
+
+function printInvoice(){
+  const area=document.getElementById('inv_printArea');
+  if(!area){alert('Generate an invoice first.');return;}
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>Invoice</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',sans-serif;background:#fff;padding:32px}</style></head><body>${area.innerHTML}</body></html>`);
+  win.document.close();
+  win.onload=()=>{win.print();};
+}
+
+function renderSavedInvoices(){
+  const el=document.getElementById('inv_savedList');
+  const cnt=document.getElementById('inv_savedCount');
+  if(!el)return;
+  if(cnt)cnt.textContent=savedInvoices.length;
+  if(!savedInvoices.length){el.innerHTML='<div style="font-size:12px;color:var(--text3)">No invoices generated yet.</div>';return;}
+  const statusColor={unpaid:'tw',paid:'tgr',overdue:'tg'};
+  el.innerHTML=savedInvoices.map((inv,i)=>`
+    <div class="inv-saved-row">
+      <div style="flex:1"><div style="font-weight:500">${inv.client}</div><div style="font-size:11px;color:var(--text3)">${inv.id} · ${inv.date}</div></div>
+      <div style="font-weight:600;color:var(--text)">${inv.amount}</div>
+      <span class="tag ${statusColor[inv.status]||'tw'}" onclick="cycleStatus(${i})">${inv.status}</span>
+      <button class="btn btn-sm" onclick="deleteSavedInvoice(${i})" style="padding:3px 8px;color:var(--text3)"><i class="ti ti-trash"></i></button>
+    </div>`).join('');
+}
+
+function cycleStatus(i){
+  const cycle={unpaid:'paid',paid:'overdue',overdue:'unpaid'};
+  savedInvoices[i].status=cycle[savedInvoices[i].status]||'unpaid';
+  localStorage.setItem('nubo_invoices',JSON.stringify(savedInvoices));
+  renderSavedInvoices();
+}
+
+function deleteSavedInvoice(i){
+  savedInvoices.splice(i,1);
+  localStorage.setItem('nubo_invoices',JSON.stringify(savedInvoices));
+  renderSavedInvoices();
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded',()=>{
+  // Restore Groq key
+  if(groqKey){
+    document.getElementById('groqKeyIn').value=groqKey;
+    setGroqStatus(true);
+  }
+  // Restore business info
+  const biz=JSON.parse(localStorage.getItem('inv_biz')||'{}');
+  if(biz.name)document.getElementById('inv_bizName').value=biz.name;
+  if(biz.email)document.getElementById('inv_bizEmail').value=biz.email;
+  if(biz.phone)document.getElementById('inv_bizPhone').value=biz.phone;
+  if(biz.addr)document.getElementById('inv_bizAddr').value=biz.addr;
+  // Set today's date
+  const today=new Date().toISOString().split('T')[0];
+  document.getElementById('inv_date').value=today;
+  const due=new Date();due.setDate(due.getDate()+14);
+  document.getElementById('inv_due').value=due.toISOString().split('T')[0];
+  // Render
+  renderInvItems();
+  renderSavedInvoices();
+});
+</script>
+</body>
+</html>

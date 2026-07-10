@@ -167,8 +167,29 @@ nav{
 @keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 /* ── LAPTOP MOCKUP ── */
+.live-badge{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:fit-content;margin:3.2rem auto 0;
+  padding:0.5rem 1rem;border-radius:100px;
+  background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);
+  font-size:0.78rem;font-weight:600;color:#4ade80;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;background:#4ade80;
+  box-shadow:0 0 0 0 rgba(74,222,128,0.6);
+  animation:livePulse 1.8s infinite;
+}
+@keyframes livePulse{
+  0%{box-shadow:0 0 0 0 rgba(74,222,128,0.55);}
+  70%{box-shadow:0 0 0 8px rgba(74,222,128,0);}
+  100%{box-shadow:0 0 0 0 rgba(74,222,128,0);}
+}
+.lap-caption{
+  max-width:560px;margin:1.2rem auto 0;text-align:center;
+  font-size:0.8rem;color:var(--muted2);line-height:1.6;
+}
 .laptop-wrap{
-  width:100%;max-width:1180px;margin:4.5rem auto 0;
+  width:100%;max-width:1180px;margin:1.6rem auto 0;
   padding:0 1rem;
 }
 .laptop{position:relative;width:100%;}
@@ -200,29 +221,9 @@ nav{
   border-bottom:1px solid rgba(255,255,255,0.06);
 }
 .lap-topbar-title{margin-left:8px;font-size:0.72rem;color:var(--muted);font-weight:600;}
-.lap-body{display:flex;min-height:400px;}
-.lap-side{
-  width:52px;flex-shrink:0;
-  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
-  padding:1rem 0;
-  border-right:1px solid rgba(255,255,255,0.06);
+.lap-iframe{
+  width:100%;height:640px;border:0;display:block;background:#0b0d14;
 }
-.lap-side-logo{
-  width:30px;height:30px;border-radius:8px;
-  background:var(--accent);color:#fff;font-weight:800;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;margin-bottom:0.4rem;
-}
-.lap-side-item{
-  width:32px;height:32px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.85rem;opacity:0.55;
-}
-.lap-side-item.on{background:rgba(51,102,255,0.18);opacity:1;}
-.lap-main{flex:1;padding:1.3rem 1.5rem;text-align:left;overflow:hidden;}
-.lap-head-title{font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.02em;}
-.lap-head-sub{font-size:0.76rem;color:var(--muted);margin-top:0.2rem;}
-.lap-kanban{margin-top:0.2rem;}
 .laptop-base{
   height:16px;
   background:linear-gradient(180deg,#3a3d48,#22242c);
@@ -234,14 +235,11 @@ nav{
   width:110px;height:6px;background:#111319;border-radius:0 0 8px 8px;
 }
 @media(max-width:800px){
-  .lap-side{display:none;}
-  .lap-body{min-height:auto;}
-  .lap-kanban{grid-template-columns:1fr 1fr;}
+  .lap-iframe{height:600px;}
 }
 @media(max-width:520px){
   .laptop-screen{border-radius:14px 14px 4px 4px;padding:10px 10px 6px;}
-  .lap-main{padding:1rem;}
-  .lap-kanban{grid-template-columns:1fr;}
+  .lap-iframe{height:560px;}
 }
 
 /* ── TICKER ── */
@@ -286,7 +284,7 @@ nav{
   gap:1.25rem;margin-top:3.5rem;
 }
 @media(min-width:900px){
-  .grid{grid-template-columns:repeat(3,1fr);max-width:1100px;}
+  .grid{grid-template-columns:repeat(2,1fr);max-width:780px;}
 }
 
 .card{
@@ -531,6 +529,47 @@ nav{
 .spin.show{display:inline-block;}
 @keyframes sp{to{transform:rotate(360deg);}}
 
+/* ── CUSTOM PROJECTS ── */
+.custom-section{padding:7rem 5vw;border-top:1px solid var(--border);}
+.custom-inner{max-width:900px;margin:0 auto;text-align:center;}
+.custom-inner .sec-title{margin-left:auto;margin-right:auto;}
+.custom-inner .sec-sub{margin-left:auto;margin-right:auto;}
+.custom-card{
+  margin:3rem auto 0;
+  max-width:600px;
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:16px;
+  padding:2.75rem 2.25rem;
+  display:flex;flex-direction:column;align-items:center;gap:1.35rem;
+}
+.custom-cta{
+  display:inline-flex;align-items:center;gap:0.55rem;
+  padding:0.85rem 1.9rem;
+  border-radius:9px;
+  font-family:'Inter',sans-serif;
+  font-size:0.9rem;font-weight:700;
+  letter-spacing:-0.01em;text-decoration:none;
+  cursor:pointer;transition:all 0.2s;
+}
+.custom-cta i{font-size:1rem;}
+.custom-cta-filled{background:var(--accent);color:#fff;}
+.custom-cta-filled:hover{background:var(--accent-hover);transform:translateY(-2px);}
+.custom-cta-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.custom-cta-outline:hover{border-color:var(--border-hover);background:rgba(51,102,255,0.07);}
+.custom-or{
+  display:flex;align-items:center;gap:0.9rem;width:100%;
+  font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted2);
+}
+.custom-or::before,.custom-or::after{content:'';flex:1;height:1px;background:var(--border);}
+.custom-social-row{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center;}
+@media(max-width:560px){
+  .custom-card{padding:2rem 1.5rem;}
+  .custom-social-row{flex-direction:column;width:100%;}
+  .custom-social-row .custom-cta{justify-content:center;}
+}
+
 /* ── FOOTER ── */
 footer{
   border-top:1px solid var(--border);
@@ -655,147 +694,6 @@ footer{
   padding:0.25rem 0.65rem;border-radius:100px;
   letter-spacing:0.03em;text-transform:uppercase;
 }
-.demo-body{display:flex;min-height:440px;}
-.demo-nav{
-  width:180px;flex-shrink:0;
-  border-right:1px solid var(--border);
-  padding:0.9rem 0.55rem;
-  display:flex;flex-direction:column;gap:0.22rem;
-}
-.demo-nav-btn{
-  display:flex;align-items:center;gap:10px;
-  padding:0.62rem 0.75rem;border-radius:9px;
-  background:transparent;border:none;
-  color:var(--muted);font-family:'Inter',sans-serif;
-  font-size:0.81rem;font-weight:600;
-  cursor:pointer;text-align:left;
-  transition:background 0.2s,color 0.2s;
-  width:100%;
-}
-.demo-nav-btn .ic{width:16px;flex-shrink:0;text-align:center;font-size:0.9rem;}
-.demo-nav-btn:hover{background:rgba(255,255,255,0.04);color:var(--text);}
-.demo-nav-btn.on{background:rgba(51,102,255,0.16);color:#7aadff;}
-.demo-content{flex:1;padding:1.5rem 1.7rem;overflow:hidden;}
-.demo-pane{display:none;}
-.demo-pane.on{display:block;animation:demoFade 0.35s ease;}
-@keyframes demoFade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.demo-pane-head{margin-bottom:1.1rem;}
-.demo-pane-title{font-size:1rem;font-weight:800;color:#fff;letter-spacing:-0.02em;}
-.demo-pane-sub{font-size:0.78rem;color:var(--muted);margin-top:0.2rem;}
-
-.dstat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.2rem;}
-.dstat{
-  background:rgba(255,255,255,0.03);
-  border:1px solid var(--border);border-radius:10px;
-  padding:0.85rem 1rem;
-}
-.dstat-num{font-size:1.25rem;font-weight:800;color:#fff;letter-spacing:-0.02em;}
-.dstat-num span{color:#4ade80;font-size:0.72rem;font-weight:700;margin-left:4px;}
-.dstat-label{font-size:0.7rem;color:var(--muted);margin-top:0.2rem;text-transform:uppercase;letter-spacing:0.04em;}
-
-.dbars{display:flex;align-items:flex-end;gap:0.5rem;height:110px;padding:0 0.2rem;margin-bottom:0.5rem;}
-.dbar{flex:1;background:linear-gradient(180deg,#4d88ff,#0033ff);border-radius:5px 5px 0 0;position:relative;}
-.dbar-lbl{position:absolute;bottom:-1.3rem;left:0;right:0;text-align:center;font-size:0.65rem;color:var(--muted2);}
-
-.dkanban{display:grid;grid-template-columns:repeat(4,1fr);gap:0.6rem;}
-.dcol-title{font-size:0.68rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.5rem;}
-.dcard{
-  background:rgba(255,255,255,0.03);border:1px solid var(--border);
-  border-radius:8px;padding:0.6rem 0.7rem;margin-bottom:0.5rem;
-  font-size:0.76rem;color:var(--text);font-weight:600;
-}
-.dcard span{display:block;font-size:0.68rem;color:var(--muted);font-weight:500;margin-top:0.15rem;}
-
-.dlist{display:flex;flex-direction:column;gap:0.5rem;}
-.drow{
-  display:flex;align-items:center;justify-content:space-between;gap:0.8rem;
-  background:rgba(255,255,255,0.03);border:1px solid var(--border);
-  border-radius:9px;padding:0.65rem 0.9rem;font-size:0.79rem;
-}
-.drow-main{font-weight:700;color:#fff;}
-.drow-sub{font-size:0.7rem;color:var(--muted);margin-top:0.1rem;}
-.dpill{font-size:0.66rem;font-weight:700;padding:0.22rem 0.6rem;border-radius:100px;white-space:nowrap;}
-.dpill.ok{background:rgba(74,222,128,0.14);color:#4ade80;}
-.dpill.wait{background:rgba(245,197,66,0.14);color:#f5c542;}
-.dpill.new{background:rgba(51,102,255,0.16);color:#7aadff;}
-
-.dcheck{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.8rem;}
-.dcheck:last-child{border-bottom:none;}
-.dbox{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--border-hover);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;color:#4ade80;cursor:pointer;}
-.dbox.done{background:rgba(74,222,128,0.15);border-color:#4ade80;}
-.dtask.done-text{color:var(--muted2);text-decoration:line-through;}
-
-.dscraper-bar{display:flex;gap:0.5rem;margin-bottom:1rem;}
-.dscraper-input{
-  flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border);
-  border-radius:8px;padding:0.55rem 0.8rem;font-size:0.78rem;color:var(--muted);
-}
-.dscraper-go{
-  background:var(--accent);color:#fff;border:none;border-radius:8px;
-  padding:0.55rem 1rem;font-size:0.78rem;font-weight:700;cursor:pointer;flex-shrink:0;
-}
-
-.dchat{display:flex;flex-direction:column;gap:0.7rem;}
-.dbubble{max-width:78%;padding:0.65rem 0.9rem;border-radius:12px;font-size:0.8rem;line-height:1.5;}
-.dbubble.user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:3px;}
-.dbubble.ai{align-self:flex-start;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:3px;}
-
-.demo-cta-wrap{margin-top:2.2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;}
-.demo-note{font-size:0.78rem;color:var(--muted2);max-width:520px;margin:0 auto 1rem;line-height:1.6;}
-
-@media(max-width:800px){
-  .demo-body{flex-direction:column;}
-  .demo-nav{width:100%;flex-direction:row;overflow-x:auto;border-right:none;border-bottom:1px solid var(--border);padding:0.6rem;}
-  .demo-nav-btn{white-space:nowrap;}
-  .dstat-row{grid-template-columns:1fr 1fr;}
-  .dkanban{grid-template-columns:1fr 1fr;}
-}
-
-/* ── LEAD SCRAPER DEMO (mimics NUBO_LEADS.html exact interface) ── */
-.leads-app{background:#f8f9fb;color:#1a1a2e;font-family:'Inter',sans-serif;}
-.leads-topbar{height:48px;background:#fff;border-bottom:1px solid #e9ecef;display:flex;align-items:center;padding:0 18px;gap:10px;}
-.leads-logo{font-weight:700;font-size:14px;color:#1a1a2e;letter-spacing:-0.02em;}
-.leads-badge{font-size:10px;background:rgba(40,85,216,0.09);color:#1e46c7;padding:2px 8px;border-radius:20px;font-weight:600;}
-.leads-body{padding:18px;max-height:520px;overflow-y:auto;}
-.leads-card{background:#fff;border:1px solid #e9ecef;border-radius:10px;padding:14px 16px;margin-bottom:12px;}
-.leads-card-title{font-size:10px;color:#adb5bd;text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.leads-source-note{font-size:12px;color:#495057;line-height:1.55;background:#f1f3f5;border-radius:8px;padding:10px 12px;}
-.leads-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:6px;}
-.leads-col-label{font-size:10px;color:#adb5bd;text-transform:uppercase;letter-spacing:.05em;font-weight:600;margin-bottom:6px;}
-.leads-input-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.leads-num{width:18px;height:18px;border-radius:50%;background:rgba(40,85,216,.09);color:#1e46c7;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.leads-input{flex:1;background:#f1f3f5;border:1px solid #dee2e6;border-radius:6px;padding:6px 9px;font-size:11px;color:#1a1a2e;font-family:'Inter',sans-serif;}
-.leads-stats{display:flex;gap:10px;margin:12px 0;}
-.leads-stat{flex:1;background:#f1f3f5;border:1px solid #e9ecef;border-radius:6px;padding:10px;text-align:center;}
-.leads-stat-val{font-size:18px;font-weight:700;display:block;color:#1a1a2e;}
-.leads-stat-lbl{font-size:9px;color:#adb5bd;text-transform:uppercase;letter-spacing:.05em;}
-.leads-btn-row{display:flex;gap:8px;flex-wrap:wrap;}
-.leads-btn{border:1px solid #dee2e6;background:#fff;color:#1a1a2e;border-radius:6px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:'Inter',sans-serif;transition:all .12s;}
-.leads-btn:hover:not(:disabled){background:#f1f3f5;}
-.leads-btn-primary{background:#2855d8;color:#fff;border-color:#2855d8;}
-.leads-btn-primary:hover:not(:disabled){background:#1e46c7;}
-.leads-btn:disabled{opacity:0.45;cursor:default;}
-.leads-progress-wrap{display:none;margin-top:12px;}
-.leads-progress-bg{height:4px;background:#dee2e6;border-radius:2px;overflow:hidden;margin:6px 0;}
-.leads-progress-bar{height:100%;background:#2855d8;width:0%;transition:width .3s;}
-.leads-log{height:76px;overflow-y:auto;font-family:'IBM Plex Mono',monospace;font-size:10px;line-height:1.6;color:#495057;background:#f8f9fb;border:1px solid #e9ecef;border-radius:6px;padding:8px 10px;margin-top:8px;}
-.leads-log .ok{color:#15803d;}
-.leads-log .info{color:#b45309;}
-.leads-table-wrap{overflow-x:auto;}
-table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
-.leads-table th{font-size:9px;color:#adb5bd;text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;border-bottom:1px solid #e9ecef;text-align:left;background:#f8f9fb;font-weight:600;}
-.leads-table td{padding:8px 10px;border-bottom:1px solid #e9ecef;color:#495057;vertical-align:middle;}
-.leads-table tr:hover td{background:#f8f9fb;}
-.leads-email{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#1a1a2e;font-weight:600;}
-.leads-tag{display:inline-block;padding:1px 7px;border-radius:3px;font-size:9px;border:1px solid #dee2e6;color:#868e96;}
-.leads-dot{width:6px;height:6px;border-radius:50%;background:#16a34a;display:inline-block;margin-right:6px;}
-.leads-copy{font-size:10px;padding:2px 8px;border-radius:3px;border:1px solid #dee2e6;background:transparent;color:#adb5bd;cursor:pointer;font-family:'Inter',sans-serif;transition:all .12s;}
-.leads-copy:hover{border-color:#2855d8;color:#2855d8;}
-.leads-copy.done{color:#15803d;border-color:#15803d;}
-@media(max-width:700px){
-  .leads-grid{grid-template-columns:1fr;}
-  .leads-stats{flex-direction:column;}
-}
 /* ── TOUCH DEVICE PERFORMANCE ── */
 @media (hover:none){
   .card:hover,.card.featured:hover,.testi-card:hover,.btn-p:hover{
@@ -806,7 +704,6 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important;}
 }
 </style>
-<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
 
@@ -819,6 +716,7 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
     <ul class="nav-links">
       <li><a href="#products">Products</a></li>
       <li><a href="#how">How It Works</a></li>
+      <li><a href="#custom">Custom Work</a></li>
       <li><a href="#">Support</a></li>
     </ul>
     <a href="#products" class="nav-btn">Buy Now</a>
@@ -842,6 +740,7 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
   </div>
 
   <!-- LAPTOP MOCKUP -->
+  <div class="live-badge reveal"><span class="live-dot"></span>Live preview — the actual dashboard, running right here</div>
   <div class="laptop-wrap reveal">
     <div class="laptop">
       <div class="laptop-notch"></div>
@@ -851,56 +750,13 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
             <span class="demo-dot r"></span><span class="demo-dot y"></span><span class="demo-dot g"></span>
             <span class="lap-topbar-title">NUBO Dashboard</span>
           </div>
-          <div class="lap-body">
-            <div class="lap-side">
-              <div class="lap-side-logo">N</div>
-              <div class="lap-side-item on">📊</div>
-              <div class="lap-side-item">💰</div>
-              <div class="lap-side-item">✅</div>
-              <div class="lap-side-item">✉️</div>
-              <div class="lap-side-item">🔍</div>
-              <div class="lap-side-item">🧾</div>
-              <div class="lap-side-item">🤖</div>
-            </div>
-            <div class="lap-main">
-              <div class="lap-head">
-                <div>
-                  <div class="lap-head-title">Lead Pipeline</div>
-                  <div class="lap-head-sub">12 active deals · $34,200 in motion</div>
-                </div>
-              </div>
-              <div class="dstat-row" style="margin-bottom:0.9rem;">
-                <div class="dstat"><div class="dstat-num">$18,420<span>+23%</span></div><div class="dstat-label">This Month</div></div>
-                <div class="dstat"><div class="dstat-num">$2,150</div><div class="dstat-label">Outstanding</div></div>
-                <div class="dstat"><div class="dstat-num">$96,300</div><div class="dstat-label">Total Revenue</div></div>
-              </div>
-              <div class="dkanban lap-kanban">
-                <div>
-                  <div class="dcol-title">New (4)</div>
-                  <div class="dcard">Riverside Dental<span>$1,200 · website</span></div>
-                  <div class="dcard">Kappa Fitness<span>$900 · automation</span></div>
-                </div>
-                <div>
-                  <div class="dcol-title">Contacted (3)</div>
-                  <div class="dcard">Bloom Florist<span>$1,500 · full site</span></div>
-                  <div class="dcard">Urban Cuts Salon<span>$800 · landing page</span></div>
-                </div>
-                <div>
-                  <div class="dcol-title">Proposal (3)</div>
-                  <div class="dcard">Marlin Auto Repair<span>$2,400 · site + CRM</span></div>
-                </div>
-                <div>
-                  <div class="dcol-title">Won (2)</div>
-                  <div class="dcard">Nova Law Group<span>$3,600 · full system</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <iframe src="dashboard-preview.html" class="lap-iframe" title="NUBO Dashboard live preview" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-popups"></iframe>
         </div>
       </div>
       <div class="laptop-base"><span class="laptop-hinge"></span></div>
     </div>
   </div>
+  <div class="lap-caption reveal">This is the real NUBO Dashboard, the exact interface and buttons you get after purchase. AI features (Advisor, Content AI) need your own free Groq API key to respond, just like in the full product.</div>
 </section>
 
 <!-- TICKER -->
@@ -933,24 +789,6 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
 
   <div class="grid">
 
-    <!-- NUBO LEADS -->
-    <div class="card reveal">
-      <div class="card-price"><sup>$</sup>49</div>
-      <div class="card-name">NUBO Lead Scraper</div>
-      <div class="card-tag">AI powered email scraper for any niche & city</div>
-      <div class="divider"></div>
-      <ul class="features">
-        <li>Find local business emails by niche</li>
-        <li>Groq AI integration (free API key)</li>
-        <li>Export leads to CSV instantly</li>
-        <li>Multi source search engine</li>
-        <li>Built in duplicate remover</li>
-        <li>Single HTML file, no install needed</li>
-        <li>Instant download delivery</li>
-      </ul>
-      <button class="buy-btn buy-outline" onclick="openModal('NUBO_LEADS', 49)">Buy Now</button>
-    </div>
-
     <!-- NUBO DASHBOARD -->
     <div class="card featured reveal">
       <span class="card-badge">BEST VALUE</span>
@@ -958,10 +796,9 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
       <div class="card-name">NUBO Dashboard</div>
       <div class="card-tag">Complete AI business OS for local service businesses</div>
       <div class="divider"></div>
-      <div class="card-bundle">Includes NUBO Lead Scraper + NUBO Invoice, built right in</div>
+      <div class="card-bundle">Includes NUBO Invoice, built right in</div>
       <ul class="features">
         <li>CRM pipeline & lead management</li>
-        <li><b>Full Lead Scraper module included</b></li>
         <li><b>Full Invoice generator included</b></li>
         <li>Finance tracker with revenue charts</li>
         <li>Task manager & content calendar</li>
@@ -991,99 +828,6 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
       <button class="buy-btn buy-outline" onclick="openModal('NUBO_INVOICE', 29)">Buy Now</button>
     </div>
 
-  </div>
-</section>
-
-
-<!-- LIVE DEMO -->
-<section class="demo-section" id="demo">
-  <div class="demo-inner">
-    <div class="sec-tag reveal">Try It First</div>
-    <h2 class="sec-title reveal">Click around before<br>you buy.</h2>
-    <p class="sec-sub reveal">A live look at NUBO Lead Scraper's real interface, pulling sample results from OpenStreetMap. This is the exact tool you get.</p>
-
-    <div class="demo-shell reveal">
-      <div class="demo-topbar">
-        <span class="demo-dot r"></span><span class="demo-dot y"></span><span class="demo-dot g"></span>
-        <span class="demo-topbar-title">NUBO Lead Scraper</span>
-        <span class="demo-topbar-badge">Live Demo</span>
-      </div>
-
-      <div class="leads-app">
-        <div class="leads-topbar">
-          <span class="leads-logo">Nubo</span>
-          <span class="leads-badge">Lead Scraper</span>
-          <div style="margin-left:auto;font-size:10px;color:#adb5bd;font-weight:600;">NUBO Lead Scraper</div>
-        </div>
-
-        <div class="leads-body">
-
-          <!-- DATA SOURCE -->
-          <div class="leads-card">
-            <div class="leads-card-title"><i class="ti ti-map-pin"></i>Data source <span style="font-size:9px;background:#f0fdf4;color:#15803d;padding:1px 6px;border-radius:10px;margin-left:4px;text-transform:none;letter-spacing:0;">NO API KEY NEEDED</span></div>
-            <div class="leads-source-note">Real businesses pulled live from OpenStreetMap, free, no signup, no key. Best for physical local businesses: restaurants, clinics, gyms, salons, hotels, shops, real estate, law firms and more.</div>
-          </div>
-
-          <!-- SCRAPER -->
-          <div class="leads-card">
-            <div class="leads-card-title"><i class="ti ti-search"></i>Real lead generator, find real businesses by niche and city</div>
-            <div class="leads-grid">
-              <div>
-                <div class="leads-col-label">Niches to search</div>
-                <div class="leads-input-row"><span class="leads-num">1</span><input class="leads-input" value="digital marketing agency" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">2</span><input class="leads-input" value="web design company" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">3</span><input class="leads-input" value="SEO agency" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">4</span><input class="leads-input" value="social media marketing" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">5</span><input class="leads-input" value="content marketing" readonly tabindex="-1"></div>
-              </div>
-              <div>
-                <div class="leads-col-label">Cities / locations</div>
-                <div class="leads-input-row"><span class="leads-num">1</span><input class="leads-input" value="London" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">2</span><input class="leads-input" value="Dubai" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">3</span><input class="leads-input" value="New York" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">4</span><input class="leads-input" value="Singapore" readonly tabindex="-1"></div>
-                <div class="leads-input-row"><span class="leads-num">5</span><input class="leads-input" value="Sydney" readonly tabindex="-1"></div>
-              </div>
-            </div>
-
-            <div class="leads-stats" id="leadsStatRow" style="display:none;">
-              <div class="leads-stat"><span class="leads-stat-val" id="lTotal">0</span><span class="leads-stat-lbl">Leads found</span></div>
-              <div class="leads-stat"><span class="leads-stat-val" id="lSites">0</span><span class="leads-stat-lbl">Places scanned</span></div>
-              <div class="leads-stat"><span class="leads-stat-val" id="lQueries">0</span><span class="leads-stat-lbl">Searches done</span></div>
-            </div>
-
-            <div class="leads-btn-row" style="margin-top:6px;">
-              <button class="leads-btn leads-btn-primary" id="leadsStartBtn" onclick="runLeadsDemo()" style="flex:1;"><i class="ti ti-player-play"></i> <span id="leadsStartLabel">Start scraping</span></button>
-              <button class="leads-btn" id="leadsExportBtn" onclick="exportLeadsDemo()" disabled><i class="ti ti-download"></i> Export CSV</button>
-            </div>
-
-            <div class="leads-progress-wrap" id="leadsProgressPanel">
-              <div style="display:flex;justify-content:space-between;font-size:11px;color:#495057;"><span id="leadsProgressText">Starting...</span><span id="leadsProgressPct" style="color:#1e46c7;">0%</span></div>
-              <div class="leads-progress-bg"><div class="leads-progress-bar" id="leadsProgressBar"></div></div>
-              <div class="leads-log" id="leadsLogArea"></div>
-            </div>
-          </div>
-
-          <!-- RESULTS -->
-          <div class="leads-card" style="margin-bottom:0;">
-            <div class="leads-card-title" style="margin-bottom:10px;"><i class="ti ti-list"></i>Results: <span id="leadsResCount">0</span> leads found</div>
-            <div class="leads-table-wrap">
-              <table class="leads-table">
-                <thead><tr><th>Email</th><th>Business</th><th>Website</th><th>Phone</th><th>Niche</th><th>City</th><th></th></tr></thead>
-                <tbody id="leadsTableBody"><tr><td colspan="7" style="text-align:center;padding:28px;color:#adb5bd;">Click "Start scraping" above to pull real leads</td></tr></tbody>
-              </table>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <p class="demo-note reveal">This is the real NUBO Lead Scraper interface with a live sample run. The full version searches unlimited niches and cities, finds contact emails, and exports everything to CSV. This tool, plus NUBO Invoice, also comes fully built into NUBO Dashboard, so you don't have to buy them separately.</p>
-    <div class="demo-cta-wrap reveal">
-      <button class="buy-btn buy-filled" style="width:auto;padding:0.9rem 2rem;" onclick="openModal('NUBO_DASHBOARD', 97)">Get NUBO Dashboard (includes this): $97</button>
-      <button class="buy-btn buy-outline" style="width:auto;padding:0.9rem 2rem;" onclick="openModal('NUBO_LEADS', 49)">Or just Lead Scraper: $49</button>
-    </div>
   </div>
 </section>
 
@@ -1176,6 +920,31 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
 
 
 
+<!-- CUSTOM PROJECTS -->
+<section class="custom-section" id="custom">
+  <div class="custom-inner">
+    <div class="sec-tag reveal">Custom Work</div>
+    <h2 class="sec-title reveal">Need something<br>custom built?</h2>
+    <p class="sec-sub reveal">Not seeing what you need in the store? We take on custom AI tools, automations, and websites too, reach out directly and skip the queue.</p>
+
+    <div class="custom-card reveal">
+      <a href="mailto:nuboautomations@gmail.com" class="custom-cta custom-cta-filled">
+        <i class="ti ti-mail"></i> Email us
+      </a>
+      <div class="custom-or">or DM us</div>
+      <div class="custom-social-row">
+        <a href="https://x.com/nuboio" target="_blank" rel="noopener" class="custom-cta custom-cta-outline">
+          <i class="ti ti-brand-x"></i> X
+        </a>
+        <a href="https://instagram.com/ai.nubo" target="_blank" rel="noopener" class="custom-cta custom-cta-outline">
+          <i class="ti ti-brand-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <!-- FOOTER -->
 <footer>
   <a href="#" class="f-logo" style="display:flex;align-items:center;gap:8px;">
@@ -1184,6 +953,7 @@ table.leads-table{width:100%;border-collapse:collapse;font-size:11px;}
   <ul class="f-links">
     <li><a href="#products">Products</a></li>
     <li><a href="#how">How It Works</a></li>
+    <li><a href="#custom">Custom Work</a></li>
     <li><a href="#">Support</a></li>
   </ul>
   <div class="f-social">
@@ -1254,7 +1024,6 @@ function pickCoin(el) {
 }
 const PRODUCT_FILES = {
   'NUBO_DASHBOARD': 'NUBO_DASHBOARD.html',
-  'NUBO_LEADS': 'NUBO_LEADS.html',
   'NUBO_INVOICE': 'NUBO_INVOICE.html'
 };
 
@@ -1295,147 +1064,9 @@ function submitPay() {
   });
 }
 
-const revealEls = document.querySelectorAll('.reveal');
-function showAllReveals(){ revealEls.forEach(el => el.classList.add('vis')); }
-if ('IntersectionObserver' in window) {
-  try {
-    const obs = new IntersectionObserver(e => e.forEach(i => { if (i.isIntersecting) i.target.classList.add('vis'); }), { threshold: 0.1 });
-    revealEls.forEach(el => obs.observe(el));
-  } catch (e) {
-    showAllReveals();
-  }
-} else {
-  showAllReveals();
-}
-// Safety net: guarantee content is visible even if the observer never fires (slow script, blocked JS, preview modes)
-setTimeout(showAllReveals, 2000);
+const obs = new IntersectionObserver(e => e.forEach(i => { if (i.isIntersecting) i.target.classList.add('vis'); }), { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-/* ── NUBO LEAD SCRAPER — LIVE DEMO SIMULATION ── */
-const LEADS_DEMO_DATA = [
-  { email:'hello@brightbrandlondon.co.uk', business:'BrightBrand Marketing', website:'brightbrandlondon.co.uk', phone:'+44 20 7946 0958', niche:'digital marketing agency', city:'London' },
-  { email:null, business:'Pulse Digital London', website:null, phone:'+44 20 7946 0122', niche:'digital marketing agency', city:'London' },
-  { email:'team@thameslinemarketing.co.uk', business:'Thames Line Marketing', website:'thameslinemarketing.co.uk', phone:'+44 20 7946 0344', niche:'digital marketing agency', city:'London' },
-  { email:null, business:'Northbank Growth Agency', website:null, phone:'+44 20 7946 0567', niche:'digital marketing agency', city:'London' },
-  { email:'info@dunewebstudio.ae', business:'Dune Web Studio', website:'dunewebstudio.ae', phone:'+971 4 555 0142', niche:'web design company', city:'Dubai' },
-  { email:null, business:'Marina Digital Works', website:null, phone:'+971 4 555 0199', niche:'web design company', city:'Dubai' },
-  { email:'hello@skylinewebdubai.com', business:'Skyline Web Dubai', website:'skylinewebdubai.com', phone:'+971 4 555 0233', niche:'web design company', city:'Dubai' }
-];
-const LEADS_LOG_STEPS = [
-  { msg:'Looking up city locations (OpenStreetMap)...', type:'info' },
-  { msg:'✓ Located London', type:'ok' },
-  { msg:'✓ Located Dubai', type:'ok' },
-  { msg:'Searching OpenStreetMap for real businesses...', type:'info' },
-  { msg:'Searching: "digital marketing agency" in London', type:'info' },
-  { msg:'✓ BrightBrand Marketing — hello@brightbrandlondon.co.uk', type:'ok' },
-  { msg:'✓ Pulse Digital London — +44 20 7946 0122', type:'ok' },
-  { msg:'✓ Thames Line Marketing — team@thameslinemarketing.co.uk', type:'ok' },
-  { msg:'✓ Northbank Growth Agency — +44 20 7946 0567', type:'ok' },
-  { msg:'Searching: "web design company" in Dubai', type:'info' },
-  { msg:'✓ Dune Web Studio — info@dunewebstudio.ae', type:'ok' },
-  { msg:'✓ Marina Digital Works — +971 4 555 0199', type:'ok' },
-  { msg:'✓ Skyline Web Dubai — hello@skylinewebdubai.com', type:'ok' },
-  { msg:'✓ Done! 7 real leads found.', type:'ok' }
-];
-
-let leadsRunning = false;
-
-function leadsRenderTable(rows) {
-  const tb = document.getElementById('leadsTableBody');
-  const rc = document.getElementById('leadsResCount');
-  rc.textContent = rows.length;
-  if (!rows.length) {
-    tb.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:28px;color:#adb5bd;">Click "Start scraping" above to pull real leads</td></tr>';
-    return;
-  }
-  tb.innerHTML = rows.map((r, i) => `<tr>
-    <td class="leads-email">${r.email ? `<span class="leads-dot"></span>${r.email}` : '<span style="color:#adb5bd">—</span>'}</td>
-    <td>${r.business}</td>
-    <td>${r.website ? `<a href="#" onclick="return false" style="color:#1e46c7;text-decoration:none;font-size:10px;">${r.website}</a>` : '—'}</td>
-    <td>${r.phone || '—'}</td>
-    <td><span class="leads-tag">${r.niche}</span></td>
-    <td><span class="leads-tag">${r.city}</span></td>
-    <td>${r.email ? `<button class="leads-copy" id="lcb${i}" onclick="leadsCopy('${r.email}','lcb${i}')">copy</button>` : (r.website ? `<button class="leads-copy">find email</button>` : '—')}</td>
-  </tr>`).join('');
-}
-
-function leadsCopy(email, btnId) {
-  navigator.clipboard?.writeText(email).catch(() => {});
-  const btn = document.getElementById(btnId);
-  if (btn) {
-    btn.textContent = '✓';
-    btn.classList.add('done');
-    setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('done'); }, 1500);
-  }
-}
-
-function runLeadsDemo() {
-  if (leadsRunning) return;
-  leadsRunning = true;
-
-  const startBtn = document.getElementById('leadsStartBtn');
-  const startLabel = document.getElementById('leadsStartLabel');
-  const exportBtn = document.getElementById('leadsExportBtn');
-  const statRow = document.getElementById('leadsStatRow');
-  const progressPanel = document.getElementById('leadsProgressPanel');
-  const logArea = document.getElementById('leadsLogArea');
-  const progressBar = document.getElementById('leadsProgressBar');
-  const progressPct = document.getElementById('leadsProgressPct');
-  const progressText = document.getElementById('leadsProgressText');
-
-  startBtn.disabled = true;
-  exportBtn.disabled = true;
-  startLabel.textContent = 'Scraping…';
-  statRow.style.display = 'flex';
-  progressPanel.style.display = 'block';
-  logArea.innerHTML = '';
-  leadsRenderTable([]);
-  document.getElementById('lTotal').textContent = '0';
-  document.getElementById('lSites').textContent = '0';
-  document.getElementById('lQueries').textContent = '0';
-
-  let leadsFound = 0, sitesScanned = 0;
-  const totalSteps = LEADS_LOG_STEPS.length;
-
-  LEADS_LOG_STEPS.forEach((step, i) => {
-    setTimeout(() => {
-      const line = document.createElement('div');
-      line.className = step.type;
-      line.textContent = '> ' + step.msg;
-      logArea.appendChild(line);
-      logArea.scrollTop = logArea.scrollHeight;
-
-      if (step.type === 'ok' && step.msg.startsWith('✓') && !step.msg.includes('Located') && !step.msg.includes('Done!')) {
-        leadsFound++;
-        sitesScanned += Math.floor(Math.random() * 4) + 3;
-        document.getElementById('lTotal').textContent = leadsFound;
-        document.getElementById('lSites').textContent = sitesScanned;
-        document.getElementById('lQueries').textContent = Math.min(2, Math.ceil(leadsFound / 4));
-        leadsRenderTable(LEADS_DEMO_DATA.slice(0, leadsFound));
-      }
-
-      const pct = Math.round(((i + 1) / totalSteps) * 100);
-      progressBar.style.width = pct + '%';
-      progressPct.textContent = pct + '%';
-      progressText.textContent = `${i + 1} / ${totalSteps} steps`;
-
-      if (i === totalSteps - 1) {
-        startBtn.disabled = false;
-        exportBtn.disabled = false;
-        startLabel.textContent = 'Run again';
-        leadsRunning = false;
-      }
-    }, i * 450);
-  });
-}
-
-function exportLeadsDemo() {
-  // Demo export is intentionally locked — no free leads. Nudge toward purchase instead.
-  const btn = document.getElementById('leadsExportBtn');
-  const original = btn.innerHTML;
-  btn.innerHTML = '<i class="ti ti-lock"></i> Buy to unlock export';
-  btn.disabled = true;
-  setTimeout(() => { openModal('NUBO_DASHBOARD', 97); btn.innerHTML = original; btn.disabled = false; }, 500);
-}
 </script>
 </body>
 </html>

@@ -5,52 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nubo — AI Invoice Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8f9fa;--bg2:#ffffff;--bg3:#f1f3f5;
-  --border:#e9ecef;--border2:#dee2e6;
-  --text:#1a1a2e;--text2:#495057;--text3:#adb5bd;
-  --blue:#2855d8;--blue-bg:rgba(40,85,216,0.09);--blue-text:#1e46c7;
-  --green:#16a34a;--green-bg:#f0fdf4;--green-text:#15803d;
-  --red:#dc2626;--red-bg:#fef2f2;--red-text:#b91c1c;
-  --amber:#d97706;--amber-bg:#fffbeb;--amber-text:#b45309;
-  --radius:10px;--radius-sm:6px;
-  --shadow:0 1px 3px rgba(0,0,0,0.06);
+  --bg:#f6f7f9;--bg2:#ffffff;--bg3:#eef0f2;
+  --border:#e2e5e9;--border2:#d1d5db;
+  --text:#111827;--text2:#4b5563;--text3:#9ca3af;
+  --blue:#2563eb;--blue-bg:#dbeafe;--blue-text:#1d4ed8;
+  --green:#16a34a;--green-bg:#dcfce7;--green-text:#15803d;
+  --red:#dc2626;--red-bg:#fee2e2;--red-text:#b91c1c;
+  --amber:#d97706;--amber-bg:#fef3c7;--amber-text:#b45309;
+  --purple:#7c3aed;--purple-bg:#ede9fe;--purple-text:#6d28d9;
+  --radius:12px;--radius-sm:8px;
+  --shadow:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);
 }
+/* ═══════════════════════════════════════════
+   Dark mode — matches Nubo Lead Scraper / Store palette
+   ═══════════════════════════════════════════ */
 body.dark{
-  --bg:#000000;--bg2:#16181c;--bg3:#1e2124;
-  --border:#2f3336;--border2:#3a3d42;
-  --text:#e7e9ea;--text2:#8b98a5;--text3:#536471;
-  --blue:#2855d8;--blue-bg:rgba(59,110,232,0.12);--blue-text:#3b6ee8;
-  --green:#00ba7c;--green-bg:rgba(0,186,124,0.1);--green-text:#00ba7c;
-  --red:#f4212e;--red-bg:rgba(244,33,46,0.1);--red-text:#f4212e;
-  --amber:#ffd400;--amber-bg:rgba(255,212,0,0.1);--amber-text:#ffd400;
+  --bg:#0f1115;--bg2:#181a20;--bg3:#1e2128;
+  --border:#2a2d35;--border2:#3a3f4a;
+  --text:#f3f4f6;--text2:#9ca3af;--text3:#6b7280;
+  --blue:#3b82f6;--blue-bg:rgba(59,130,246,0.12);--blue-text:#60a5fa;
+  --green:#22c55e;--green-bg:rgba(34,197,94,0.12);--green-text:#4ade80;
+  --red:#ef4444;--red-bg:rgba(239,68,68,0.12);--red-text:#f87171;
+  --amber:#f59e0b;--amber-bg:rgba(245,158,11,0.12);--amber-text:#fbbf24;
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,0.12);--purple-text:#c4b5fd;
+  --shadow:0 1px 0 #2a2d35;
 }
-body.dark .card{background:#16181c;border-color:#2f3336;box-shadow:none}
-body.dark input,body.dark select,body.dark textarea{background:transparent;border-color:#2f3336;color:#e7e9ea}
-body.dark input::placeholder,body.dark textarea::placeholder{color:#536471}
-body.dark input:focus,body.dark select:focus,body.dark textarea:focus{border-color:#3b6ee8;background:transparent}
-body.dark label{color:#71767b}
-body.dark .btn{background:transparent;border-color:#2f3336;color:#e7e9ea}
-body.dark .btn:hover{background:rgba(231,233,234,0.08)}
-body.dark .btn-primary{background:#3b6ee8;border-color:#3b6ee8;color:#fff;font-weight:600}
-body.dark .btn-primary:hover{background:#1a56c4}
-body.dark .topbar{background:rgba(0,0,0,0.9);border-color:#2f3336}
-body.dark .inv-saved-row{border-color:#2f3336}
-body.dark .key-card{background:#1e2124;border-color:#2f3336}
-body.dark .tag{border-color:#2f3336}
-body.dark .tag.tw{color:#8b98a5}
-body.dark .tag.tgr{color:#00ba7c}
-body.dark .tag.tg{color:#f4212e}
 
 body{font-family:'Inter',sans-serif;font-size:13px;background:var(--bg);color:var(--text);min-height:100vh}
 
 /* ── TOPBAR ── */
 .topbar{height:52px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
-.topbar-logo{font-size:15px;font-weight:600;letter-spacing:-0.02em}
+.topbar-logo{font-size:15px;font-weight:700;letter-spacing:-0.02em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .topbar-badge{font-size:10px;background:var(--blue-bg);color:var(--blue-text);padding:2px 8px;border-radius:20px;font-weight:500}
 .topbar-right{margin-left:auto;display:flex;gap:8px;align-items:center}
 
@@ -61,15 +51,16 @@ body{font-family:'Inter',sans-serif;font-size:13px;background:var(--bg);color:va
 
 /* ── CARDS ── */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
-.card-title{font-size:11px;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.06em;font-weight:500}
+.card-title{font-size:11px;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
 .card-title i{font-size:14px}
 
 /* ── BUTTONS ── */
-.btn{border:1px solid var(--border2);background:var(--bg2);color:var(--text);border-radius:var(--radius-sm);padding:7px 14px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .12s;font-family:'Inter',sans-serif;font-weight:500}
-.btn:hover{background:var(--bg3)}
+.btn{border:1px solid var(--border2);background:var(--bg2);color:var(--text);border-radius:var(--radius-sm);padding:7px 14px;font-size:12px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s;font-family:'Inter',sans-serif;font-weight:500}
+.btn:hover{background:var(--bg3);transform:translateY(-1px)}
+.btn:active{transform:translateY(0)}
 .btn:disabled{opacity:.4;cursor:not-allowed}
-.btn-primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.btn-primary:hover:not(:disabled){background:#1e46c7;border-color:#1e46c7}
+.btn-primary{background:linear-gradient(135deg,var(--blue),#4f46e5);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(37,99,235,0.25)}
+.btn-primary:hover:not(:disabled){background:linear-gradient(135deg,#1d4ed8,#4338ca);box-shadow:0 4px 12px rgba(37,99,235,0.35)}
 .btn-sm{padding:5px 10px;font-size:11px}
 
 /* ── FORM ── */
@@ -146,13 +137,23 @@ label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;font-wei
 
   <!-- API KEY (optional — enhances notes) -->
   <div class="card">
-    <div class="card-title"><i class="ti ti-sparkles"></i>Groq AI key <span style="font-size:10px;background:var(--blue-bg);color:var(--blue-text);padding:1px 8px;border-radius:10px;margin-left:4px">optional — enhances invoice notes</span></div>
-    <div class="key-card">
-      <div class="key-row">
-        <input id="groqKeyIn" type="password" placeholder="gsk_... (optional — get free at console.groq.com/keys)"/>
-        <button class="btn btn-primary btn-sm" onclick="saveGroqKey()"><i class="ti ti-check"></i> Save</button>
+    <div class="card-title"><i class="ti ti-key"></i>API connections</div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:16px">Your key is saved locally in your browser only — never stored on any server.</div>
+    <div class="settings-connection-card" style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--amber-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-brain" style="color:var(--amber-text);font-size:16px"></i></div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500">Groq AI <span style="font-size:10px;background:var(--green-bg);color:var(--green-text);padding:1px 6px;border-radius:10px;margin-left:4px">FREE</span></div>
+          <div style="font-size:11px;color:var(--text3)">Used by: Invoice notes</div>
+        </div>
+        <div id="groqStatus" style="font-size:11px;color:var(--text3)">Not connected</div>
       </div>
-      <div id="groqStatus" class="key-status" style="color:var(--text3)">Not connected — invoices still work, AI note enhancement disabled</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="groqKeyIn" type="password" placeholder="gsk_..." style="flex:1;min-width:160px"/>
+        <button class="btn btn-primary btn-sm" onclick="saveGroqKey()">Connect</button>
+        <a href="https://console.groq.com/keys" target="_blank" class="btn btn-sm"><i class="ti ti-external-link"></i>Get free key</a>
+      </div>
+      <div style="font-size:11px;color:var(--text3);margin-top:6px">→ console.groq.com → Sign up → API Keys → Create Key</div>
     </div>
   </div>
 
@@ -282,7 +283,7 @@ function saveGroqKey(){
 }
 function setGroqStatus(on){
   const el=document.getElementById('groqStatus');if(!el)return;
-  el.textContent=on?'✓ Connected — AI will enhance your invoice notes':'Not connected — invoices still work, AI note enhancement disabled';
+  el.textContent=on?'✓ Connected':'Not connected';
   el.style.color=on?'var(--green-text)':'var(--text3)';
 }
 

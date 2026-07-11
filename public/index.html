@@ -57,7 +57,7 @@ nav{
 }
 .logo{
   font-size:1.3rem;font-weight:800;
-  letter-spacing:-0.04em;color:#fff;
+  letter-spacing:-0.04em;color:#7689f1;
   text-decoration:none;
   display:flex;align-items:center;gap:10px;
 }
@@ -557,6 +557,13 @@ nav{
 .custom-cta-filled:hover{background:var(--accent-hover);transform:translateY(-2px);}
 .custom-cta-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
 .custom-cta-outline:hover{border-color:var(--border-hover);background:rgba(51,102,255,0.07);}
+.custom-cta-x i{color:#fff;}
+.custom-cta-x:hover{border-color:#fff;background:rgba(255,255,255,0.08);}
+.custom-cta-ig i{
+  background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.custom-cta-ig:hover{border-color:#d62976;background:rgba(214,41,118,0.08);}
 .custom-or{
   display:flex;align-items:center;gap:0.9rem;width:100%;
   font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
@@ -577,7 +584,7 @@ footer{
   display:flex;align-items:center;
   justify-content:space-between;flex-wrap:wrap;gap:1rem;
 }
-.f-logo{font-size:1.1rem;font-weight:800;letter-spacing:-0.03em;color:#fff;text-decoration:none;}
+.f-logo{font-size:1.1rem;font-weight:800;letter-spacing:-0.03em;color:#7689f1;text-decoration:none;}
 .f-logo span{color:#4d88ff;}
 .f-links{display:flex;gap:2rem;list-style:none;}
 .f-links a{font-size:0.82rem;color:var(--muted);text-decoration:none;transition:color 0.2s;}
@@ -591,6 +598,8 @@ footer{
   transition:all 0.2s;
 }
 .f-social-icon:hover{color:#fff;border-color:var(--border-hover);background:rgba(51,102,255,0.1);}
+.f-social-icon.f-x:hover{border-color:#fff;background:rgba(255,255,255,0.08);color:#fff;}
+.f-social-icon.f-ig:hover{border-color:#d62976;background:rgba(214,41,118,0.08);color:#d62976;}
 
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s,transform 0.7s;}
 .reveal.vis{opacity:1;transform:translateY(0);}
@@ -725,7 +734,6 @@ footer{
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-pill"><span class="pill-dot"></span>Instant delivery · Crypto payments</div>
   <h1>AI tools for<br><span class="grad">local business.</span></h1>
   <p class="hero-sub">Buy once, own forever. Powerful standalone HTML software with no subscriptions, no logins, no cloud. Pay with crypto and your download hits your inbox in seconds.</p>
   <div class="hero-ctas">
@@ -740,7 +748,6 @@ footer{
   </div>
 
   <!-- LAPTOP MOCKUP -->
-  <div class="live-badge reveal"><span class="live-dot"></span>Live preview — the actual dashboard, running right here</div>
   <div class="laptop-wrap reveal">
     <div class="laptop">
       <div class="laptop-notch"></div>
@@ -933,10 +940,10 @@ footer{
       </a>
       <div class="custom-or">or DM us</div>
       <div class="custom-social-row">
-        <a href="https://x.com/nuboio" target="_blank" rel="noopener" class="custom-cta custom-cta-outline">
+        <a href="https://x.com/nuboio" target="_blank" rel="noopener" class="custom-cta custom-cta-outline custom-cta-x">
           <i class="ti ti-brand-x"></i> X
         </a>
-        <a href="https://instagram.com/ai.nubo" target="_blank" rel="noopener" class="custom-cta custom-cta-outline">
+        <a href="https://instagram.com/ai.nubo" target="_blank" rel="noopener" class="custom-cta custom-cta-outline custom-cta-ig">
           <i class="ti ti-brand-instagram"></i> Instagram
         </a>
       </div>
@@ -960,10 +967,10 @@ footer{
     <a href="mailto:nuboautomations@gmail.com" class="f-social-icon" aria-label="Email us on Gmail" title="Email">
       <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/><path d="M3.5 6.2L12 13l8.5-6.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
-    <a href="https://x.com/nuboio" target="_blank" rel="noopener" class="f-social-icon" aria-label="Nubostore on X" title="X (Twitter)">
+    <a href="https://x.com/nuboio" target="_blank" rel="noopener" class="f-social-icon f-x" aria-label="Nubostore on X" title="X (Twitter)">
       <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M13.66 10.6 20.9 2h-1.72l-6.29 7.46L7.87 2H2.16l7.6 11.02L2.16 22h1.72l6.65-7.87L15.87 22h5.71l-7.92-11.4Zm-2.36 2.79-.77-1.1L4.4 3.3h2.64l4.95 7.08.77 1.1 6.44 9.22h-2.64l-5.26-7.51Z"/></svg>
     </a>
-    <a href="https://instagram.com/ai.nubo" target="_blank" rel="noopener" class="f-social-icon" aria-label="Nubostore on Instagram" title="Instagram">
+    <a href="https://instagram.com/ai.nubo" target="_blank" rel="noopener" class="f-social-icon f-ig" aria-label="Nubostore on Instagram" title="Instagram">
       <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
     </a>
   </div>
@@ -1005,7 +1012,7 @@ let curProduct = null, curCoin = 'btc';
 
 function openModal(name, price) {
   curProduct = name;
-  document.getElementById('m-name').textContent = name;
+  document.getElementById('m-name').textContent = name.replace(/_/g, ' ');
   document.getElementById('m-price').textContent = '$' + price;
   document.getElementById('m-email').value = '';
   document.getElementById('err-box').classList.remove('show');

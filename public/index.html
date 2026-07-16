@@ -3,7 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nubostore · Software Store</title>
+
+<!-- ── SEO: PRIMARY META ── -->
+<title>Nubostore | Nubo Dashboard, Invoice & Lead Scraper Software</title>
+<meta name="description" content="Nubostore sells standalone AI business software you buy once and own forever: Nubo Dashboard, Nubo Invoice, and Nubo Lead Scraper. No subscriptions, pay with crypto, instant download.">
+<meta name="keywords" content="nubo, nubostore, nubo store, nubo dashboard, nubo invoice, nubo lead scraper, ai business software, crypto software store">
+<link rel="canonical" href="https://nubo-store.onrender.com/">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Nubostore">
+
+<!-- ── SEO: OPEN GRAPH ── -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nubostore">
+<meta property="og:title" content="Nubostore | AI Business Software, Pay Once, Own Forever">
+<meta property="og:description" content="Standalone AI tools for local business: Nubo Dashboard, Nubo Invoice, and Nubo Lead Scraper. No subscriptions, no logins, no cloud. Pay with crypto, instant delivery.">
+<meta property="og:url" content="https://nubo-store.onrender.com/">
+<meta property="og:image" content="https://nubo-store.onrender.com/og-image.png">
+
+<!-- ── SEO: TWITTER / X CARD ── -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@nuboio">
+<meta name="twitter:title" content="Nubostore | AI Business Software, Pay Once, Own Forever">
+<meta name="twitter:description" content="Standalone AI tools for local business: Nubo Dashboard, Nubo Invoice, and Nubo Lead Scraper. No subscriptions, pay with crypto.">
+<meta name="twitter:image" content="https://nubo-store.onrender.com/og-image.png">
+
+<!-- ── SEO: STRUCTURED DATA ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nubostore",
+  "url": "https://nubo-store.onrender.com/",
+  "email": "nuboautomations@gmail.com",
+  "sameAs": [
+    "https://x.com/nuboio",
+    "https://instagram.com/ai.nubo"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "Product",
+      "position": 1,
+      "name": "Nubo Dashboard",
+      "description": "Complete AI business OS for local service businesses, includes CRM pipeline, invoice generator, finance tracker, task manager, and AI business advisor. Single HTML file, no subscription.",
+      "brand": { "@type": "Brand", "name": "Nubostore" },
+      "url": "https://nubo-store.onrender.com/#products",
+      "offers": {
+        "@type": "Offer",
+        "price": "97",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://nubo-store.onrender.com/#products"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "850"
+      }
+    },
+    {
+      "@type": "Product",
+      "position": 2,
+      "name": "Nubo Invoice",
+      "description": "Professional AI invoice generator with print ready PDF export, custom line items and tax settings. Single HTML file that works offline.",
+      "brand": { "@type": "Brand", "name": "Nubostore" },
+      "url": "https://nubo-store.onrender.com/#products",
+      "offers": {
+        "@type": "Offer",
+        "price": "29",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://nubo-store.onrender.com/#products"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "850"
+      }
+    }
+  ]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -35,7 +121,6 @@ body{
   overflow-x:hidden;
 }
 
-/* ── BACKGROUND ── */
 body::before{
   content:'';position:fixed;inset:0;
   background:
@@ -46,7 +131,6 @@ body::before{
 
 section,nav,footer,.overlay{position:relative;z-index:1;}
 
-/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   padding:1.1rem 5vw;
@@ -80,7 +164,6 @@ nav{
 }
 .nav-btn:hover{background:var(--accent-hover);}
 
-/* ── HERO ── */
 .hero{
   min-height:100vh;
   display:flex;flex-direction:column;
@@ -166,7 +249,6 @@ nav{
 
 @keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── LAPTOP MOCKUP ── */
 .live-badge{
   display:flex;align-items:center;justify-content:center;gap:8px;
   width:fit-content;margin:3.2rem auto 0;
@@ -242,7 +324,6 @@ nav{
   .lap-iframe{height:560px;}
 }
 
-/* ── TICKER ── */
 .ticker-wrap{
   overflow:hidden;
   border-top:1px solid var(--border);
@@ -260,7 +341,6 @@ nav{
 .ticker span.dot{color:rgba(100,150,255,0.35);font-size:1rem;}
 @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* ── PRODUCTS SECTION ── */
 .products{
   padding:7rem 5vw;
   max-width:1200px;margin:0 auto;
@@ -375,7 +455,6 @@ nav{
 }
 .buy-outline:hover{border-color:var(--border-hover);background:rgba(51,102,255,0.07);}
 
-/* ── HOW IT WORKS ── */
 .how{
   padding:7rem 5vw;
   border-top:1px solid var(--border);
@@ -418,7 +497,6 @@ nav{
 }
 .step:last-child .step-arr{display:none;}
 
-/* ── MODAL ── */
 .overlay{
   position:fixed;inset:0;
   background:rgba(0,0,15,0.9);
@@ -529,7 +607,6 @@ nav{
 .spin.show{display:inline-block;}
 @keyframes sp{to{transform:rotate(360deg);}}
 
-/* ── CUSTOM PROJECTS ── */
 .custom-section{padding:7rem 5vw;border-top:1px solid var(--border);}
 .custom-inner{max-width:900px;margin:0 auto;text-align:center;}
 .custom-inner .sec-title{margin-left:auto;margin-right:auto;}
@@ -577,7 +654,6 @@ nav{
   .custom-social-row .custom-cta{justify-content:center;}
 }
 
-/* ── FOOTER ── */
 footer{
   border-top:1px solid var(--border);
   padding:2.5rem 5vw;
@@ -616,7 +692,6 @@ footer{
   footer{flex-direction:column;text-align:center;}
 }
 
-/* TESTIMONIALS */
 .testi-section{padding:7rem 5vw;border-top:1px solid var(--border);}
 .testi-inner{max-width:1200px;margin:0 auto;}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3.5rem;}
@@ -668,8 +743,6 @@ footer{
 @media(max-width:900px){.testi-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:600px){.testi-grid{grid-template-columns:1fr;}.overall-divider{display:none;}}
 
-
-/* ── LIVE DEMO ── */
 .demo-section{padding:7rem 5vw 5rem;border-top:1px solid var(--border);scroll-margin-top:100px;}
 .demo-inner{max-width:1000px;margin:0 auto;text-align:center;}
 .demo-inner .sec-tag{margin-left:auto;margin-right:auto;}
@@ -703,7 +776,6 @@ footer{
   padding:0.25rem 0.65rem;border-radius:100px;
   letter-spacing:0.03em;text-transform:uppercase;
 }
-/* ── TOUCH DEVICE PERFORMANCE ── */
 @media (hover:none){
   .card:hover,.card.featured:hover,.testi-card:hover,.btn-p:hover{
     transform:none;box-shadow:none;
@@ -716,7 +788,6 @@ footer{
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="logo">
     Nubostore
@@ -732,7 +803,6 @@ footer{
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <h1>AI tools for<br><span class="grad">local business.</span></h1>
   <p class="hero-sub">Buy once, own forever. Powerful standalone HTML software with no subscriptions, no logins, no cloud. Pay with crypto and your download hits your inbox in seconds.</p>
@@ -747,7 +817,6 @@ footer{
     <span class="badge-item"><span class="badge-check">✓</span> Direct to your wallet</span>
   </div>
 
-  <!-- LAPTOP MOCKUP -->
   <div class="laptop-wrap reveal">
     <div class="laptop">
       <div class="laptop-notch"></div>
@@ -766,7 +835,6 @@ footer{
   <div class="lap-caption reveal">This is the real NUBO Dashboard, the exact interface and buttons you get after purchase. AI features (Advisor, Content AI) need your own free Groq API key to respond, just like in the full product.</div>
 </section>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker">
     <span class="hi">✓ Instant delivery</span><span class="dot">·</span>
@@ -788,7 +856,6 @@ footer{
   </div>
 </div>
 
-<!-- PRODUCTS -->
 <section class="products" id="products">
   <div class="sec-tag reveal">Software Store</div>
   <h2 class="sec-title reveal">Buy once.<br>Own it forever.</h2>
@@ -796,7 +863,6 @@ footer{
 
   <div class="grid">
 
-    <!-- NUBO DASHBOARD -->
     <div class="card featured reveal">
       <span class="card-badge">BEST VALUE</span>
       <div class="card-price"><sup>$</sup>97</div>
@@ -817,7 +883,6 @@ footer{
       <button class="buy-btn buy-filled" onclick="openModal('NUBO_DASHBOARD', 97)">Buy Now</button>
     </div>
 
-    <!-- NUBO INVOICE -->
     <div class="card reveal">
       <div class="card-price"><sup>$</sup>29</div>
       <div class="card-name">NUBO Invoice</div>
@@ -838,8 +903,6 @@ footer{
   </div>
 </section>
 
-
-<!-- TESTIMONIALS -->
 <section class="testi-section">
   <div class="testi-inner">
     <div class="sec-tag reveal">Customer Reviews</div>
@@ -924,10 +987,6 @@ footer{
   </div>
 </section>
 
-
-
-
-<!-- CUSTOM PROJECTS -->
 <section class="custom-section" id="custom">
   <div class="custom-inner">
     <div class="sec-tag reveal">Custom Work</div>
@@ -951,8 +1010,6 @@ footer{
   </div>
 </section>
 
-
-<!-- FOOTER -->
 <footer>
   <a href="#" class="f-logo" style="display:flex;align-items:center;gap:8px;">
     Nubostore
@@ -977,7 +1034,6 @@ footer{
   <span class="f-copy">© 2026 Nubostore</span>
 </footer>
 
-<!-- MODAL -->
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <button class="modal-x" onclick="closeModal()">✕</button>

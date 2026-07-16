@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nubo-store.onrender.com/sitemap.xml

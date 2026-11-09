@@ -6,7 +6,6 @@
 <title>Nubo — AI Invoice Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -122,6 +121,7 @@ label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;font-wei
 /* ── TOAST ── */
 #toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:var(--bg);padding:10px 18px;border-radius:8px;font-size:12px;font-weight:500;z-index:999;opacity:0;transition:opacity .2s;pointer-events:none}
 </style>
+<style>@font-face{font-family:"tabler-icons";font-style:normal;font-weight:400;src:url(data:font/woff2;base64,d09GMgABAAAAABC4AAsAAAAAHvAAABBqAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHCoGYACBRAq2YKgOATYCJAMuCywABCAFgQoHIButFlFUsKoAfiTGDpMB5cxL6D/ocmLW+oHf5v+53At9oY3EBhYmog2oWAGoK8XIXOgaV2n0i7+o8M16Fa79uihdvHDoN/Vhc2j3dccBtUniMxHkmUjym/yCJ00FfPPYRBxCDYj+33796sxXTW6lmMRy3328szM7+00G17fioaBaadI4fWUwldBIZGiEoqdz6BkioUaOQ5P90iXcosJ13DkgAEADexABIVAVoQFmfkp5IRgBBgCwsIBVAK2FTiN6mJ5HqCVcsG1q10KmwBkh7JsARBTcJ4/JDEqHKzPR8z+haxYOwFvon5ANAAhhL+FOUc7PAsnZGByRIhDm+0WZiZ5pn9k1s2/m9synWfosc1Y46zSrmA2ejZzNm5150fPy37nD8z/N26Bu096vZ/CYoFZQIMgT+AtY/H/5f/Nn+L/x7/Nv8a/ye/n2vEKugFZO9QUEKiGwVELikijX02nk+N5FFMCAUEOLohzJ4CQNiH2JAslzip2DAsauIpvhFjyeub2p2IhNtcxn5eLpaGLmxnGgc+nta7gcNp/LZns1F8clOGZvKuJzqYzLL4qH42wWi22/MJNpZe4SESKLosjKBkDWNS9FOJRiINVFJCf7sA0p0pzDO9Mnt4SXs/2tp4zOTCNtKAc5xwnCM82S/dMVSsn0VSwgYXWdB7t7I6EnPFr/bP7Uxu0N7ppETPi76x4u0pkp32EyPMXHVTFZoiI84ojX8BY4snhnZzPVzOEWkNJ2LVYRXCNSM07mkXDvb1mHWO3GSivV1+4Ns7gZVn0GQ/jLZH8VqSbC7xeqfiSqLUbWAOdlFEpQDGR2ID+V/ny/tusnU0TFo6fIUE/3uyGOq6ELRb9nY9HOPifj3BqeOpnsIT/8RKoEZfQ54ZxuZBFp+wwGtOYl9vdW3o+jnPcg0y4EvSThLa/ud8LRQIz5mF8kwxJYeHJhFK2E/+LFClLRkjNLgvmNmH8aJ0d6gLq2Z73oYPS77WteOzDDNzhvpbWacK6xxgg+eYRpZpWEOG5WlqQMwL0/cSvZIoZJnIe8fw7r3MhdiQRM0gAgMCBZgAASkDAgbeSiz5FahXJ9XP9+UQzLBSGo5DiglRg4l4nl37LeMgFao8/GlRQ7axiZ+mI6jGHTxoB1Vk9MIEZ0sx2uubabe8FFPD3nHWCGT0RUFy1O/kzafslLEZjmVQIWJ5ygHGbJJ3IOv1fJDmzFQ1gtWimtJrA66JiIdm9YGSEebFLWH28ka9RVJD4Qrou0H+b9oU8sj8Z0nyRdpCLcCDIflPFRRBLQiofkQYyszvb8BvCyQSnEnIqHgQ7ltEy+3Y9vQHym9+P31rqr88ajtd3d7fXX5k8kGy7z1pWxUxfvX588fekt+ykD5VoiFUW/TrxIr9MSsFzHBMK0f47WTqZSwBgtAqOfzXl3MhlKcTZr3RweZJxLLOtinOgp614hOD8wgFSkGiWAck6zo0kxexFTQVGsMVkMH6fTI1vdyAYggh/WBLSU1cxUKB13X5Beo7WcBAAIZzABbb8M0jT1UMnnXpTtrLLzOKF/D1pehsys2xGvNCnFoIzGgFlU0UoBCGcwQTlB0Wc4Ug6mPNgroIB6UPl4v+Mmskq8+pGJJsow79OSBKwC3WzFdD845T8hkJMsSmGNYtH93H6Yf8qPRwefCM6jwjNhIjnynG/muoO1eN3FNZ3i5ZFGb/2lDzTH6r7VLEt+kmFeHyou0+Tb3Q8UQ2F2/Geosc92MUMOMPNjUoZFo58M8DcOr0P7WcEYfmtHcIP3RIjEG9fXkPZFqDN835vHPRSqSFXxrzAS1yPDn00Z7tlN5aQ2q5hIVJGb5mUdaE3qZzsdxzymeZZDUcpAgzUKwaMMcSeaiwHJcgIWT3acudb9raVTiLZf89pBI/xWPYm+47R9+r9DOIuYBKSUtTBTsiRUcXYxH8diUk9p9BafWgfuQbRUo/cfTtKRUlAZoUQhTUlivk7iIi0eqPc5r9e6GUqglIewh+sz8OPiJNh1GnDacUIMP7yCeLmWkhxKeKa+H9l6DUiAUIB7McIs+W1a3U8ctm/FZTeDxirCQLO/d4zGc5xtMzKt5iYLzqga3i/ZhrqXggy9e1TPK45zkhOw0xvJmh9U55vXh6ZpnkUJR6UK9dERF8rw2Am12mAwBhyaXqYUh+g72s/u69t77u97uOzUPOyp87mlZw9iJbqWuxHtvrf5ys47ve3BsIHjz5afX3HhCD655MKBx7vucirpQtnffJCVTdC8Ubq5SrahDL+78ycqBFWCOjwVr7k8og6oLG6czzgZyjmWuDPPV0231k012NO9KKfR2tCHLuqQVUaXd6wUsFLdQW1eiamvayVLJAzg4Gt2hXJGeTVih9vlW6uVtrRBIwwzId5gLQnIwonvjQwK4kBgRmTQCjeLs2tDuS7DGQo4DrOKroGiAa3CKpTy0URvtycVbnCjAgnOus+L4Yg5gCbMbUcwBVPP+0/TdhpW9ZXuKHBurvWiQVBai49DwComfWjFlYjvFNejH6RN6FrqOI8/mQcJJezhKo3EN3lMchMeU8y1bIlwH9BuSfKU5NdeqsaBVhLOcKWWIgs1HInVPmtYi5zutGJwaI/12awEQZHHnZ3ym68HGSXsb9XvltnsV+xsy9/3WTV8KGLlXNYdYiZFCKjgfqRDo8l9m2FWizQgKcJYKsb9gD5L++v8cpN8yEVWGXyTmptwnPph36YNJGlzkiCKe+QWMUnQLCVtUNkV43mMAK2tVVkSnP7i067QqsGVLdBHNjtMkw3LKK0y0FPODKH8CG5XpifncA35UqR98YfxAPdNBhrIsslE4vBn12Opb6ix15/hcfjc5Dbr1Pb2l+X6+rANY6NsbWubN20Iq9eXv8Tc561IlXUVAv8d1d6KK/nEz0QPMmR9Rw46ZfI/sexu/rS2k/GFHxSk6Brb+F8E2tU1f7HxcnS8b83KLjTPOr9YfUvbOSbUEsZo2nwpGTC6ZraNo6xntinl1/wxzrFjbIJVDuwEa7p8h/Z+TwznkklxrjrvsKL05RRGXnrZFQ9la8QOk1C8y7Jq/8n0enNyCOIsQ7XLRcmSf8ReK1Su8Q0WLdwSrWtQvocWK+kDjMVjfKHODWUevkqxuD+jIKcPH/7dyTmCTB0vsCZRTH3WrXlD5eol3EArCY4ZWe4bsSUVXSgouB9uGIlP/75zZ9ZGK4u/3DMoIj0qVDLnJrrEYpMlyVNKqLINwR2RqTfs+yzWujWGa9VDVS4lOzR5edV+1du3t/m19f4XfpB+cK2+4L7CT1QDVtsXPd+aL/tj/fvH/X+SN4VXNAWoEGfj44LmsXPr0m1+RULm5ZFXIzOpceQQh6hFUpVrgKgfV+MJzmFLg7ev0jK362PTV424pP2bbqIyj6TGUiMTWgPsg0VxhHAkyCLMynIZ6bDSXSEL4CTiCoZiNwyd/QK/W1fBl9f1wEt3jCZ8f8ddaT5g7h5w552QySQ4bgpwH/+yQQYcCaAB4TuKmIAs5Z33ww0G4VzGRAZbGOWVTploD5rJny++nMPqmJ3K1RgNXUqVJBuDhnqjI8pkGOoJu/dhPcwt9kQCeVW8HmzfboLeMCkyqo6Vc7l4np9FALLbk8inp7rFaef/PdULMFt2rCqt8JdK93tFQx+jF0QSnixtTVfMzbQTR+MDbJDtZhVoSJjAWFemPN4q1p/zF+2PELceV5bpjLHlspiGRenKxn5iWZ+8gySz9RZt+5Q73vnlh20ib1sZqUPeV0bc5SNfndwYI1uOGevWKDNdln0f322seiynTu5zW9Wxn7JiOshE8ssC9StW/JVsN18v/m9Niz9n2Hn2LAuTGQt6sXST1u+O7upJxQLbWIwK9fel89RDsZcL1SFFJIayU3drh1Rm+btpjpe9PLD6zZUEaaRD0c0m0zsa6ZqTug5acSh4pjCMfldq4L/cyTlcwpyb6O6emGNK8LnJ7o8rW3ePEDSShUHCkRqR76/fjKDYljyvfSNDPaem5RrCiCO+ZaItdSsz4IFLXUpfKAmQtYUZeKba1D7bZTanFrWvtQzHpDdem9Ml6sTNPUC05uVWUlp3j7wLlCwMdBypEfnd+9oGxTbnj+sR+G5E+CFjkn3d05Zw7GH3Q74gWTZZyBd0ehtWzhrt7r9SfuvA/ttlbyD9nSpIzolid+A3rdNXK3hTdnv/gVvlV/rVvD+c++VWl5/Qo/pe2N3B7U90hvG/0ibTrfPV/WpFN7xZfxSOpm9vf1nWUR+6YWysrVVj2XqdG0LrO8peQqjPVZ6Koy1CQtTcwPGtfiYsnGKd5GBgP9Ybo1IR40z8to4HctVIaP8NrRj6fd6Ot6WtKi4xrjcftbQ36+Si9blhmLt1XU8Nv15Ecf1RI7z5agumUEPtHrRZt8GjjI+o48PgLg0juBFzm+aPcTWcsS7836VmaUSEJEQ0SAi1ixQ5RYjl5IiVzOWe9uoIlzDnROJKYqy4Xq0Lbw9hmBLFqv03v1klxqn+GEMVXJskl8UZRRsOsEMdwkVuAV4RvJWcOHYcL8U70jN0ULMKSUVOxHsmqlRvdysXrY1TZwUzBvC5SXTMyRj+uzgxx2yAautqaOBPH1DaznVkJyZqf2iWCquILXtMf6lMTvUMxc9lvZHfva/3f43+WzxdfqVhKnmJeouioQ6B4R7T2HJkxreMt5lu8/psgOtv0A5XExO9ZdypwJ2RcmJ1S/cW+ZLkKfXRAbtHj2w7v0hdKP9CG7AFJdr9q9UTNcKglj3DOvlP16Wwn+mteoJ0CjvwX5D9kJ78SScf/t3yd8fc09T3HXu02vvC+1rtize0U6fDqYKIJOYh3eUcFryfKX15oWrwYwIhSeMjFntr6VKPrCZhkV3j1qSkrY1FdsKmLA8pXestFvtokgjxnwarLrwcnxaSJ44/ppgPVU8Uy1uMzqjOGMV0x3ZnPag2SqOS6DFGprxGaZShv+55EsagYPjRAxTrYkg7sTKUmLj5Xbdz2TDG6GUrTVXcqEkfNmrzq8/3uJnDxpjGlSfSoNiaojxRwzHQPdf5RxlKG3mmRjF0EjXNqPpBVndsd8yQf4AWefFE9ZA55fHxCb0ByvaZjFJxlabsXgZcjU6zc2oufuS5mD/R3CFPPe/AlwpEjNSQ7GDF5e2xveq+lWLONwmtsWpF6XkHzFgYfGTxkWALak3pQHRCka2znhM3+YyOdqdMdTrzP1V6FvYqeFRUFvGsN9XRS8Ch8pQ9hZ6Vn/jELt3vaFaXqvO5vnS8ax1kR6NjRu5biONOhrDIN+rJk6j7DrDbMqvo0LTwCTBYeG0X6twueykfdaWvCSUZIJY8ZSfhPE32LlRa8Vwt6jpFSfiTR+yUseyVPagb7SRZohCHMgWDZooRKrPZxYTTS96ih1BvK3bLZrMOePQxcg+hXo6FKBUQgLuyItaKmszymaPQ0Wn8/Hq7I83tgIUvC3vQd+jW/wxqyQZc+v9KGcahUZB5hFp8HKBbL1ChjBUC5CzAlE0DWuJCAAmiAAUEmzczska/igBMMFoZxa2M2SoiGIC9INlzL4cUSIV8yIBSWAI5kAZFUAhlEAeVWVDxQVOG4oGGlmE6iBCcYSk4AQpVzzQAAAA=) format("woff2")}.ti{font-family:"tabler-icons"!important;speak:none;font-style:normal;font-weight:400;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.ti-brain:before{content:"\f59f"}.ti-building:before{content:"\ea4f"}.ti-database:before{content:"\ea88"}.ti-download:before{content:"\ea96"}.ti-external-link:before{content:"\ea99"}.ti-eye:before{content:"\ea9a"}.ti-history:before{content:"\ebea"}.ti-key:before{content:"\eac7"}.ti-list:before{content:"\eb6b"}.ti-loader:before{content:"\eca3"}.ti-moon:before{content:"\eaf8"}.ti-plus:before{content:"\eb0b"}.ti-printer:before{content:"\eb0e"}.ti-receipt:before{content:"\edfd"}.ti-settings:before{content:"\eb20"}.ti-sparkles:before{content:"\f6d7"}.ti-sun:before{content:"\eb30"}.ti-trash:before{content:"\eb41"}.ti-upload:before{content:"\eb47"}.ti-user:before{content:"\eb4d"}</style>
 </head>
 <body>
 
@@ -136,7 +136,16 @@ label{font-size:11px;color:var(--text2);display:block;margin-bottom:4px;font-wei
 <div class="page">
 
   <!-- API KEY (optional — enhances notes) -->
-  <div class="card">
+  <div class="card" style="margin-bottom:14px">
+          <div class="card-title"><i class="ti ti-database"></i>Backup and restore</div>
+          <div style="font-size:12px;color:var(--text3);margin-bottom:12px">Your data lives in this browser only. Download a backup file now and then and keep it somewhere safe. It does not include your API keys or PIN.</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-sm" onclick="nuboBackup()"><i class="ti ti-download"></i>Download backup</button>
+            <button class="btn btn-sm" onclick="document.getElementById('nuboRestoreIn').click()"><i class="ti ti-upload"></i>Restore from backup</button>
+            <input id="nuboRestoreIn" type="file" accept=".json,application/json" style="display:none" onchange="nuboRestore(this)">
+          </div>
+        </div>
+    <div class="card">
     <div class="card-title"><i class="ti ti-key"></i>API connections</div>
     <div style="font-size:12px;color:var(--text3);margin-bottom:16px">Your key is saved locally in your browser only — never stored on any server.</div>
     <div class="settings-connection-card" style="border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px">
@@ -495,6 +504,39 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderInvItems();
   renderSavedInvoices();
 });
+</script>
+<script>
+(function(){
+  var PRE=['nubo_','nx_','inv_'],SKIP=['nx_groq','nx_openai','nx_maps','nx_sendgrid','nubo_pin','nubo_pin_h','nubo_fail'];
+  function ok(k){return PRE.some(function(p){return k.indexOf(p)===0;})&&SKIP.indexOf(k)<0;}
+  window.nuboBackup=function(){
+    var d={};
+    for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(ok(k))d[k]=localStorage.getItem(k);}
+    var blob=new Blob([JSON.stringify({app:'nubo',version:1,exported:new Date().toISOString(),data:d})],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='nubo-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+    showToast('Backup downloaded');
+  };
+  window.nuboRestore=function(inp){
+    var f=inp.files&&inp.files[0];if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){
+      try{
+        var j=JSON.parse(r.result);
+        if(!j||j.app!=='nubo'||!j.data)throw 0;
+        var keys=Object.keys(j.data).filter(ok);
+        if(!keys.length)throw 0;
+        if(!confirm('Restore '+keys.length+' saved items? This replaces the data currently in this browser.')){inp.value='';return;}
+        keys.forEach(function(k){if(typeof j.data[k]==='string')localStorage.setItem(k,j.data[k]);});
+        showToast('Backup restored');setTimeout(function(){location.reload();},900);
+      }catch(e){showToast('That file is not a Nubo backup');}
+      inp.value='';
+    };
+    r.readAsText(f);
+  };
+})();
 </script>
 </body>
 </html>
